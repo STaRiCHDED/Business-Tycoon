@@ -29,6 +29,7 @@ public class BusinessView : MonoBehaviour
         _levelLabel.text = $"LVL {Convert.ToString(level)}";
         _incomeLabel.text = $"Income\n{Convert.ToString(income)}$";
         _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(upgradePrice)}$";
+        
         _firstImprovementLabel.text = $"{firstImprovement.Name}\n" +
                                       $"Income - +{Convert.ToString(firstImprovement.AdditionalPercentageIncome)}%";
         _secondImprovementLabel.text = $"{secondImprovement.Name}\n" +
