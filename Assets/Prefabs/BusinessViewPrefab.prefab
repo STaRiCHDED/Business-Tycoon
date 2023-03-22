@@ -31,9 +31,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3142773356037731313}
   - {fileID: 5291537745387209775}
   - {fileID: 8298762326501763798}
-  - {fileID: 3142773356037731313}
   - {fileID: 6433027443424881685}
   - {fileID: 2437824790133557909}
   - {fileID: 2755139425124304619}
@@ -43,8 +43,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 700}
+  m_AnchoredPosition: {x: -2.0067, y: 36.0256}
+  m_SizeDelta: {x: 1004.0134, y: 772.051}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5765073252198443177
 CanvasRenderer:
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 2065931467990708231}
   - component: {fileID: 2065931467990708230}
   m_Layer: 5
-  m_Name: Slider05_BasicType
+  m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -774,7 +774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: 70}
+  m_AnchoredPosition: {x: 500, y: 123}
   m_SizeDelta: {x: 700, y: 62.106415}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065931467990708230
@@ -943,7 +943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: -50}
+  m_AnchoredPosition: {x: 500, y: -10}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2437824790133557995
@@ -1056,7 +1056,7 @@ GameObject:
   - component: {fileID: 2437824791573864268}
   - component: {fileID: 2437824791573864269}
   m_Layer: 5
-  m_Name: Text
+  m_Name: IncomeRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 2755139425124304629}
   - component: {fileID: 2755139425124304628}
   m_Layer: 5
-  m_Name: Btn_MainButton_BlueGray
+  m_Name: LevelUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1216,7 +1216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -187, y: -46}
+  m_AnchoredPosition: {x: -187, y: 0}
   m_SizeDelta: {x: 300, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2755139425124304630
@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 2755139425279416667}
   - component: {fileID: 2755139425279416666}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1450,7 +1450,7 @@ GameObject:
   - component: {fileID: 3142773355032563591}
   - component: {fileID: 3142773355032563590}
   m_Layer: 5
-  m_Name: Text_Title
+  m_Name: BusinessName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1687,8 +1687,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.0000009536743}
-  m_SizeDelta: {x: 357.02728, y: 122.91243}
+  m_AnchoredPosition: {x: -12.5843, y: 0}
+  m_SizeDelta: {x: 382.1959, y: 130.2278}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1457509239110836388
 CanvasRenderer:
@@ -1720,7 +1720,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Improved Supplies
 
-    Income - +30%
+    Income +30%
+
+    Price-20
 
 
 '
@@ -1805,7 +1807,7 @@ GameObject:
   - component: {fileID: 7507763500833926007}
   - component: {fileID: 2026038050368131481}
   m_Layer: 5
-  m_Name: Improvement1 (1)
+  m_Name: SecondImpovmentButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1829,8 +1831,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -220, y: 100}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -254.8675, y: 140}
+  m_SizeDelta: {x: 470, y: 255}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6778410754920529507
 CanvasRenderer:
@@ -1929,7 +1931,7 @@ GameObject:
   - component: {fileID: 5291537745387209811}
   - component: {fileID: 5291537745387209808}
   m_Layer: 5
-  m_Name: BusinessLevel
+  m_Name: CurrentBusinessLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1953,7 +1955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -50}
+  m_AnchoredPosition: {x: 150, y: -10}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5291537745387209809
@@ -2066,7 +2068,7 @@ GameObject:
   - component: {fileID: 5291537746698670582}
   - component: {fileID: 5291537746698670583}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CurrentLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2204,7 +2206,7 @@ GameObject:
   - component: {fileID: 8298762326501763800}
   - component: {fileID: 8298762326501763801}
   m_Layer: 5
-  m_Name: Improvement1
+  m_Name: FirstImprovmentButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2228,8 +2230,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 220, y: 100}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: 254, y: 140}
+  m_SizeDelta: {x: 470, y: 255}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8298762326501763803
 CanvasRenderer:
@@ -2348,8 +2350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.0000009536743}
-  m_SizeDelta: {x: 357.02728, y: 122.91243}
+  m_AnchoredPosition: {x: 2.727, y: -0.8956}
+  m_SizeDelta: {x: 421.59, y: 162.3196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8298762328459442240
 CanvasRenderer:
@@ -2381,7 +2383,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Additional Employee
 
-    Income - +10%
+    Income  +10%
+
+    Price -10
 
 '
   m_isRightToLeft: 0

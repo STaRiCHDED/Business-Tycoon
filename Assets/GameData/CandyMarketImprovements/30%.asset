@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Improved Supplies
   _additionalPercentageIncome: 30
+  _price: 10
