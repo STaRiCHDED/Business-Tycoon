@@ -5,25 +5,23 @@ using UnityEngine;
 public class BusinessesSpawner : MonoBehaviour
 {
     [SerializeField]
-    private List<BusinessModel> _businesses;
-
+    private BusinessesConfig _businessesConfig;
+    
     [SerializeField]
     private BusinessView _businessViewPrefab;
 
     [SerializeField]
     private RectTransform _spawnRoot;
 
-    private void Start()
-    {
-        Spawn();
-    }
+    private List<BusinessModel> _tempModels = new();
 
-    private void Spawn()
+    public void Spawn()
     {
-        foreach (var businessModel in _businesses)
+        foreach (var businessModel in _businessesConfig.Businesses)
         {
             var businessView = Instantiate(_businessViewPrefab, _spawnRoot);
             businessView.Initialize(businessModel);
+            _tempModels.Add(businessModel);
         }
     }
 }
