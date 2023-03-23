@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,24 +16,24 @@ public class BusinessView : MonoBehaviour
 
     [SerializeField] 
     private TextMeshProUGUI _upgradePriceLabel;
-    
-    [SerializeField]
-    private TextMeshProUGUI _firstImprovementLabel;
-    
-    [SerializeField]
-    private TextMeshProUGUI _secondImprovementLabel;
 
-    public void Initialize(string businessName, int level, int income, int upgradePrice,
-        Improvement firstImprovement, Improvement secondImprovement)
+    [SerializeField]
+    private ImprovementView _improvementViewPrefab;
+
+    [SerializeField]
+    private RectTransform _improvementsSpawnRoot;
+    
+    public void Initialize(BusinessModel businessModel)
     {
-        _nameLabel.text = businessName;
-        _levelLabel.text = $"LVL {Convert.ToString(level)}";
-        _incomeLabel.text = $"Income\n{Convert.ToString(income)}$";
-        _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(upgradePrice)}$";
-        
-        _firstImprovementLabel.text = $"{firstImprovement.Name}\n" +
-                                      $"Income - +{Convert.ToString(firstImprovement.AdditionalPercentageIncome)}%";
-        _secondImprovementLabel.text = $"{secondImprovement.Name}\n" +
-                                       $"Income - +{Convert.ToString(secondImprovement.AdditionalPercentageIncome)}%";
+        _nameLabel.text = businessModel.Name;
+        _levelLabel.text = $"LVL {Convert.ToString(businessModel.Level)}";
+        _incomeLabel.text = $"Income\n{Convert.ToString(businessModel.Income)}$";
+        _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.UpgradePrice)}$";
+
+        foreach (var improvement in businessModel.Improvements)
+        {
+            var businessImprovement = Instantiate(_improvementViewPrefab, _improvementsSpawnRoot);
+            businessImprovement.Show(improvement);
+        }
     }
 }
