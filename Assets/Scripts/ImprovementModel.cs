@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[CreateAssetMenu(menuName = "Improvement", fileName = "Improvement")]
-public class Improvement : ScriptableObject
+[Serializable]
+public class ImprovementModel
 {
     public string Name => _name;
    
     public int AdditionalPercentageIncome => _additionalPercentageIncome;
 
     public int Price => _price;
+
+    public bool IsPurchased => _isPurchased;
    
     [SerializeField]
     private string _name;
@@ -17,4 +20,7 @@ public class Improvement : ScriptableObject
 
     [SerializeField]
     private int _price;
+
+    [SerializeField]
+    private bool _isPurchased;
 }

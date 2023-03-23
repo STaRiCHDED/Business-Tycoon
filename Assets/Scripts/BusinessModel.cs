@@ -1,32 +1,38 @@
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "BusinessModel", fileName = "BusinessModel")]
-public class BusinessModel : ScriptableObject
+[Serializable]
+public class BusinessModel
 {
-   public string Name => _name;
+    public string Name => _name;
    
-   public int Level => _level;
+    public int Level => _level;
    
-   public int Income => _income;
+    public int Income => _income;
 
-   public int UpgradePrice => _upgradePrice;
+    public int IncomeDelay => _incomeDelay;
 
-   public IReadOnlyList<Improvement> Improvements => _improvements;
-   
-   [SerializeField]
-   private string _name;
-   
-   [SerializeField]
-   private int  _level;
-   
-   [SerializeField]
-   private int _income;
+    public int UpgradePrice => _upgradePrice;
 
-   [SerializeField]
-   private int _upgradePrice;
+    public IReadOnlyList<ImprovementModel> Improvements => _improvements;
+   
+    [SerializeField]
+    private string _name;
+   
+    [SerializeField]
+    private int  _level;
+   
+    [SerializeField]
+    private int _income;
 
-   [SerializeField]
-   private List<Improvement> _improvements;
+    [SerializeField]
+    private int _incomeDelay;
+
+    [SerializeField]
+    private int _upgradePrice;
+
+    [SerializeField]
+    private List<ImprovementModel> _improvements;
 
 }
