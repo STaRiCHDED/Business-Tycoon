@@ -23,15 +23,15 @@ MonoBehaviour:
       _additionalPercentageIncome: 10
       _price: 50
       _isPurchased: 0
-    - _name: Bonus
-      _additionalPercentageIncome: 50
-      _price: 50000
+    - _name: ImprovedSupplies
+      _additionalPercentageIncome: 30
+      _price: 1000
       _isPurchased: 0
   - _name: Bank
-    _level: 1
-    _income: 100
-    _incomeDelay: 3
-    _upgradePrice: 999
+    _level: 0
+    _income: 40
+    _incomeDelay: 6
+    _upgradePrice: 1000
     _improvements:
     - _name: Up
       _additionalPercentageIncome: 10
@@ -40,4 +40,32 @@ MonoBehaviour:
     - _name: Some
       _additionalPercentageIncome: 10
       _price: 50
+      _isPurchased: 0
+  - _name: GameDev Studio
+    _level: 0
+    _income: 200
+    _incomeDelay: 10
+    _upgradePrice: 10000
+    _improvements:
+    - _name: New Manager
+      _additionalPercentageIncome: 10
+      _price: 100
+      _isPurchased: 0
+    - _name: Better Pc's
+      _additionalPercentageIncome: 20
+      _price: 500
+      _isPurchased: 0
+  - _name: Weapon Dealership
+    _level: 0
+    _income: 10000
+    _incomeDelay: 360
+    _upgradePrice: 100000
+    _improvements:
+    - _name: Better Weapons
+      _additionalPercentageIncome: 20
+      _price: 50000
+      _isPurchased: 0
+    - _name: Safe Place To Hide
+      _additionalPercentageIncome: 50
+      _price: 100000
       _isPurchased: 0
