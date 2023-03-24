@@ -39,7 +39,7 @@ RectTransform:
   - {fileID: 2755139425124304619}
   - {fileID: 2065931467990708231}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -100,7 +100,7 @@ MonoBehaviour:
   _levelLabel: {fileID: 5291537746698670583}
   _incomeLabel: {fileID: 2437824791573864269}
   _upgradePriceLabel: {fileID: 2755139425279416666}
-  _improvementViewPrefab: {fileID: 0}
+  _improvementViewPrefab: {fileID: 4450303004419667588, guid: d78687377a06cf34798cc445e78dde55, type: 3}
   _improvementsSpawnRoot: {fileID: 0}
 --- !u!1 &2065931466255927082
 GameObject:

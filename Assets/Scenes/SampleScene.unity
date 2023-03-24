@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 162832977}
   - component: {fileID: 162832976}
   m_Layer: 0
-  m_Name: GameState
+  m_Name: BusinessSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,13 +251,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 162832975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2ea4bbde4244f788988ee8281c4999b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c2e783651714d4cb811fad0c3142fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _businesses:
-  - {fileID: 11400000, guid: 7730332bbc964ea49a417fc81ff67295, type: 2}
+  _businessesConfig: {fileID: 11400000, guid: e87284cf7868cfd4598720689e201ddd, type: 2}
+  _businessPrefab: {fileID: 4360780632764273935, guid: 69b608814089b5442b2363acfed7fcf9, type: 3}
   _spawnRoot: {fileID: 1455882959}
-  _businessViewPrefab: {fileID: 8544038132521036036, guid: 69b608814089b5442b2363acfed7fcf9, type: 3}
 --- !u!4 &162832977
 Transform:
   m_ObjectHideFlags: 0

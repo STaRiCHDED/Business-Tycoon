@@ -19,21 +19,21 @@ MonoBehaviour:
     _incomeDelay: 3
     _upgradePrice: 50
     _improvements:
-    - _name: Some
+    - _name: Additional Employee
       _additionalPercentageIncome: 10
       _price: 50
       _isPurchased: 0
-    - _name: Some
-      _additionalPercentageIncome: 10
-      _price: 50
+    - _name: Bonus
+      _additionalPercentageIncome: 50
+      _price: 50000
       _isPurchased: 0
-  - _name: Candymarket
+  - _name: Bank
     _level: 1
-    _income: 3
+    _income: 100
     _incomeDelay: 3
-    _upgradePrice: 50
+    _upgradePrice: 999
     _improvements:
-    - _name: Some
+    - _name: Up
       _additionalPercentageIncome: 10
       _price: 50
       _isPurchased: 0

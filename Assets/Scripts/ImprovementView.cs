@@ -10,7 +10,7 @@ public class ImprovementView : MonoBehaviour
     private TextMeshProUGUI _additionalPercentageIncomeLabel;
     
     [SerializeField]
-    private TextMeshPro _stateLabel;
+    private TextMeshProUGUI _stateLabel;
 
     private string _purchased = "Purchased";
 
@@ -18,6 +18,6 @@ public class ImprovementView : MonoBehaviour
     {
         _nameLabel.text = improvement.Name;
         _additionalPercentageIncomeLabel.text = "Income +" + improvement.AdditionalPercentageIncome + "%";
-        _stateLabel.text = "Price" + improvement.Price;
+        _stateLabel.text = $"Price- {improvement.Price}$" ;
     }
 }
