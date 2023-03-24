@@ -23,7 +23,7 @@ public class BusinessView : MonoBehaviour
     [SerializeField]
     private RectTransform _improvementsSpawnRoot;
     
-    public void Initialize(BusinessModel businessModel)
+    public void Show(BusinessModel businessModel)
     {
         _nameLabel.text = businessModel.Name;
         _levelLabel.text = $"LVL {Convert.ToString(businessModel.Level)}";
