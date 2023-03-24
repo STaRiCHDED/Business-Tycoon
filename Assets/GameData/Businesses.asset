@@ -12,4 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b316ac7cacc44ddfbf3fb16fd1d86881, type: 3}
   m_Name: Businesses
   m_EditorClassIdentifier: 
-  _businesses: []
+  _businesses:
+  - _name: Candymarket
+    _level: 1
+    _income: 3
+    _incomeDelay: 3
+    _upgradePrice: 50
+    _improvements:
+    - _name: Some
+      _additionalPercentageIncome: 10
+      _price: 50
+      _isPurchased: 0
+    - _name: Some
+      _additionalPercentageIncome: 10
+      _price: 50
+      _isPurchased: 0
+  - _name: Candymarket
+    _level: 1
+    _income: 3
+    _incomeDelay: 3
+    _upgradePrice: 50
+    _improvements:
+    - _name: Some
+      _additionalPercentageIncome: 10
+      _price: 50
+      _isPurchased: 0
+    - _name: Some
+      _additionalPercentageIncome: 10
+      _price: 50
+      _isPurchased: 0
