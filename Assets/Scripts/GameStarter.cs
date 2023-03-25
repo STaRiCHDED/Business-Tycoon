@@ -14,7 +14,7 @@ public class GameStarter : MonoBehaviour
         foreach (var dataBusiness in data.Businesses)
         {
             Debug.Log($"Business:{dataBusiness.Name}" +
-                      $"\nBalance:{dataBusiness.Level}" +
+                      $"\nLevel:{dataBusiness.Level}" +
                       $"\nIncome:{dataBusiness.Income}" +
                       $"\nIncomeDelay:{dataBusiness.IncomeDelay}\nBalance:{dataBusiness.Improvements[0]} {dataBusiness.Improvements[1]}");
         }
