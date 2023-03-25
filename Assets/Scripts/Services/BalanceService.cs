@@ -10,8 +10,8 @@ public class BalanceService : IBalanceService
         if (HasEnoughMoney(amount))
         {
             _money -= amount;
+            BalanceChanged?.Invoke(_money);
         }
-        BalanceChanged?.Invoke(_money);
     }
 
     public void Receive(int amount)
