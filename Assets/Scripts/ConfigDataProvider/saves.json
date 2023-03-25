@@ -1,0 +1,56 @@
+{
+  "endTime": "2023-03-25T15:01:34Z",
+  "balance": 200000,
+  "businesses": [
+    {
+      "name": "Coffee Shop",
+      "level": 2,
+      "incomeDelay": 5,
+      "income": 3,
+      "improvements": [
+        true,
+        true
+      ]
+    },
+    {
+      "name": "Restaurant",
+      "level": 3,
+      "incomeDelay": 5,
+      "income": 3,
+      "improvements": [
+        true,
+        false
+      ]
+    },
+    {
+      "name": "Clothing Store",
+      "level": 1,
+      "incomeDelay": 5,
+      "income": 3,
+      "improvements": [
+        true,
+        false
+      ]
+    },
+    {
+      "name": "Gym",
+      "level": 2,
+      "incomeDelay": 5,
+      "income": 3,
+      "improvements": [
+        false,
+        false
+      ]
+    },
+    {
+      "name": "Pet Store",
+      "level": 1,
+      "incomeDelay": 5,
+      "income": 3,
+      "improvements": [
+        false,
+        false
+      ]
+    }
+  ]
+}
