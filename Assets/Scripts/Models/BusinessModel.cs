@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class BusinessModel
 {
+    
     public string Name => _name;
    
     public int Level => _level;
@@ -34,5 +35,4 @@ public class BusinessModel
 
     [SerializeField]
     private List<ImprovementModel> _improvements;
-
 }
