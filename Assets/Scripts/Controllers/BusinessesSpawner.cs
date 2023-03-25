@@ -4,7 +4,7 @@ using UnityEngine;
 public class BusinessesSpawner : MonoBehaviour
 {
     [SerializeField]
-    private BusinessesConfig _businessesConfig;
+    private BusinessesConfigModel _businessesConfigModel;
 
     [SerializeField]
     private BusinessController _businessPrefab;
@@ -19,7 +19,7 @@ public class BusinessesSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        foreach (var businessModel in _businessesConfig.Businesses)
+        foreach (var businessModel in _businessesConfigModel.Businesses)
         {
             var business = Instantiate(_businessPrefab, _spawnRoot);
             business.Initialize(businessModel);
