@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2e783651714d4cb811fad0c3142fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _businessesConfig: {fileID: 11400000, guid: e87284cf7868cfd4598720689e201ddd, type: 2}
+  _businessesConfigModel: {fileID: 11400000, guid: e87284cf7868cfd4598720689e201ddd, type: 2}
   _businessPrefab: {fileID: 4360780632764273935, guid: 69b608814089b5442b2363acfed7fcf9, type: 3}
   _spawnRoot: {fileID: 1455882959}
 --- !u!4 &162832977
@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -515,6 +516,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_CullTransparentMesh: 1
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464a3b703ac349caa2913b5e3b70bd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &968747704
 GameObject:
   m_ObjectHideFlags: 0
