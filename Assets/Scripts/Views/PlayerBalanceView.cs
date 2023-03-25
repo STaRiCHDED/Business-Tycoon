@@ -8,14 +8,15 @@ public class PlayerBalanceView : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _balance;
 
-    private void Awake()
+    private void Start()
     {
-        var moneyService = ServiceLocator.Instance.GetSingle<BalanceService>();
+        var moneyService = ServiceLocator.Instance.GetSingle<IBalanceService>();
         moneyService.BalanceChanged += ShowBalance;
     }
 
-    public void ShowBalance(int balance)
+    private void ShowBalance(int balance)
     {
         _balance.text = "Balance" + balance + "$";
     }
+    
 }
