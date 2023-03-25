@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 public class BusinessData
@@ -9,5 +10,5 @@ public class BusinessData
     [JsonProperty("balance")] 
     public int Balance { get; set;}
     [JsonProperty("businesses")] 
-    public Business[] Businesses { get; set;}
+    public List<Business> Businesses { get; set;}
 }
