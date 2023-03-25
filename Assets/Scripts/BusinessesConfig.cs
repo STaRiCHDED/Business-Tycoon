@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Businesses", menuName = "Businesses")]
+[CreateAssetMenu(fileName = "BusinessesConfig", menuName = "BusinessesConfig")]
 public class BusinessesConfig : ScriptableObject
 {
     public IReadOnlyList<BusinessModel> Businesses => _businesses;
