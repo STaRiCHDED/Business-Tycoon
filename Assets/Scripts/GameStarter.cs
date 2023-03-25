@@ -15,9 +15,8 @@ public class GameStarter : MonoBehaviour
         {
             Debug.Log($"Business:{dataBusiness.Name}" +
                       $"\nBalance:{dataBusiness.Level}" +
-                      $"\nBalance:{dataBusiness.Income}" +
-                      $"\nBalance:{dataBusiness.IncomeDelay}" +
-                      $"\nBalance:{dataBusiness.Improvements}");
+                      $"\nIncome:{dataBusiness.Income}" +
+                      $"\nIncomeDelay:{dataBusiness.IncomeDelay}\nBalance:{dataBusiness.Improvements[0]} {dataBusiness.Improvements[1]}");
         }
         data.EndTime = DateTime.UtcNow;
         data.Balance = 200000;
