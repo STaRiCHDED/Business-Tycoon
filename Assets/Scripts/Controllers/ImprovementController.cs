@@ -19,7 +19,7 @@ namespace Controllers
             _improvementView.Show(_improvementModel);
         }
 
-        public void BuyImprovement()
+        private void BuyImprovement()
         { 
             var improvementPrice = _improvementModel.Price;
             var balanceService= ServiceLocator.Instance.GetSingle<IBalanceService>();
