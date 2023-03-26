@@ -535,7 +535,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2794265105115150565}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4450303004419667588}
+        m_TargetAssemblyTypeName: Views.ImprovementView, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4450303004419667588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,3 +563,4 @@ MonoBehaviour:
   _nameLabel: {fileID: 2794265103176280700}
   _additionalPercentageIncomeLabel: {fileID: 7193758083214218506}
   _stateLabel: {fileID: 4307030756450081364}
+  _buyButton: {fileID: 2794265105115150564}

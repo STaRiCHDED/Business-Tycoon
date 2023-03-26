@@ -5,7 +5,7 @@
         public string Name { get; }
         public int IncomeMultiplier { get; }
         public int Price { get; }
-        public bool IsPurchased { get; }
+        public bool IsPurchased { get; private set;}
 
         public ImprovementModel(ImprovementConfigModel improvementConfigModel)
         {
@@ -13,6 +13,11 @@
             IncomeMultiplier = improvementConfigModel.IncomeMultiplier;
             Price = improvementConfigModel.Price;
             IsPurchased = improvementConfigModel.IsPurchased;
+        }
+
+        public void ChangeState(bool isPurchased)
+        {
+            IsPurchased = isPurchased;
         }
     }
 }
