@@ -17,11 +17,11 @@ namespace Views
 
         private string _purchased = "Purchased";
 
-        public void Show(ImprovementModel improvement)
+        public void Show(ImprovementConfigModel improvementConfig)
         {
-            _nameLabel.text = improvement.Name;
-            _additionalPercentageIncomeLabel.text = "Income +" + improvement.AdditionalPercentageIncome + "%";
-            _stateLabel.text = $"Price- {improvement.Price}$" ;
+            _nameLabel.text = improvementConfig.Name;
+            _additionalPercentageIncomeLabel.text = "Income +" + improvementConfig.IncomeMultiplier + "%";
+            _stateLabel.text = $"Price- {improvementConfig.Price}$" ;
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Views
 {
@@ -24,19 +27,33 @@ namespace Views
 
         [SerializeField]
         private RectTransform _improvementsSpawnRoot;
-    
-        public void Show(BusinessModel businessModel)
-        {
-            _nameLabel.text = businessModel.Name;
-            _levelLabel.text = $"LVL {Convert.ToString(businessModel.Level)}";
-            _incomeLabel.text = $"Income\n{Convert.ToString(businessModel.Income)}$";
-            _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.UpgradePrice)}$";
 
-            foreach (var improvement in businessModel.Improvements)
+        private Action _onClicked;
+    
+        public void Show(BusinessConfigModel businessConfigModel)
+        {
+            _nameLabel.text = businessConfigModel.Name;
+            _levelLabel.text = $"LVL {Convert.ToString(businessConfigModel.Level)}";
+            _incomeLabel.text = $"Income\n{Convert.ToString(businessConfigModel.Income)}$";
+            _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessConfigModel.UpgradePrice)}$";
+
+            foreach (var improvement in businessConfigModel.Improvements)
             {
                 var businessImprovement = Instantiate(_improvementViewPrefab, _improvementsSpawnRoot);
                 businessImprovement.Show(improvement);
             }
+        }
+        
+        [UsedImplicitly]
+        // from LevelUpButton in Editor
+        public void Click()
+        {
+            _onClicked?.Invoke();
+        }
+
+        public void SetClickCallback(Action onClicked)
+        {
+            _onClicked = onClicked;
         }
     }
 }
