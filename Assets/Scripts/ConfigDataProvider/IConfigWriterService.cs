@@ -2,5 +2,5 @@ using Services;
 
 public interface IConfigWriterService : IService
 {
-    public void WriteConfig(BusinessData data);
+    public void WriteConfig(BusinessDataJson dataJson);
 }

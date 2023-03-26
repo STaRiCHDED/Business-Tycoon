@@ -32,6 +32,20 @@ namespace Models
             }
         }
 
+        public void UpdateModel(BusinessJson updatedData)
+        {
+            CurrentLevel = updatedData.Level;
+            var improvementsDictionary = new Dictionary<string, ImprovementsJson>();
+            foreach (var updatedDataImprovement in updatedData.Improvements)
+            {
+                improvementsDictionary.Add(updatedDataImprovement.Name,updatedDataImprovement);
+            }
+            foreach (var improvementModel in _improvements)
+            {
+                improvementModel.ChangeState(improvementsDictionary[improvementModel.Name].IsPurchased);
+            }
+
+        }
         public void UpdateLevel()
         {
             CurrentLevel++;

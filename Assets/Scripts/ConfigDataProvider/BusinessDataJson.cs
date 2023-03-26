@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class BusinessData
+public class BusinessDataJson
 {
     [JsonProperty("endTime")] 
     [JsonConverter(typeof(CustomDateTimeConverter))]
@@ -10,5 +10,5 @@ public class BusinessData
     [JsonProperty("balance")] 
     public int Balance { get; set;}
     [JsonProperty("businesses")] 
-    public List<Business> Businesses { get; set;}
+    public List<BusinessJson> Businesses { get; set;}
 }
