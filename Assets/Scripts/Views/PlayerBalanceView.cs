@@ -15,7 +15,7 @@ namespace Views
             moneyService.BalanceChanged += ShowBalance;
         }
 
-        private void ShowBalance(int balance)
+        private void ShowBalance(float balance)
         {
             _balance.text = "Balance" + balance + "$";
         }

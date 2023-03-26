@@ -424,8 +424,9 @@ GameObject:
   - component: {fileID: 2794265105115150565}
   - component: {fileID: 2794265105115150564}
   - component: {fileID: 4450303004419667588}
+  - component: {fileID: 948968248943680785}
   m_Layer: 5
-  m_Name: ImprovementView
+  m_Name: ImprovementPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -564,3 +565,15 @@ MonoBehaviour:
   _additionalPercentageIncomeLabel: {fileID: 7193758083214218506}
   _stateLabel: {fileID: 4307030756450081364}
   _buyButton: {fileID: 2794265105115150564}
+--- !u!114 &948968248943680785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2794265105115150570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572c879adefb46efbaed8d81e1d1439f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

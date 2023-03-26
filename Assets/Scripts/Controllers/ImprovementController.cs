@@ -11,26 +11,27 @@ namespace Controllers
         private ImprovementView _improvementView;
         private ImprovementModel _improvementModel;
         
-
-        private void Initialize(ImprovementConfigModel improvementConfigModel )
+        public void Initialize(ImprovementConfigModel improvementConfigModel)
         {
             _improvementView = GetComponent<ImprovementView>();
             _improvementModel = new ImprovementModel(improvementConfigModel);
             _improvementView.SetClickCallBack(BuyImprovement);
-
+            _improvementView.Show(_improvementModel);
         }
 
         public void BuyImprovement()
-        {
+        { 
             var improvementPrice = _improvementModel.Price;
-           var balanceService= ServiceLocator.Instance.GetSingle<IBalanceService>();
-           if (balanceService.HasEnoughMoney(improvementPrice))
-           {
+            var balanceService= ServiceLocator.Instance.GetSingle<IBalanceService>();
+            var configService = ServiceLocator.Instance.GetSingle<IConfigService>();
+            
+            if (balanceService.HasEnoughMoney(improvementPrice))
+            {
                _improvementModel.ChangeState(true);
                balanceService.Pay(improvementPrice);
+              
                _improvementView.Show(_improvementModel);
-           }
-           
+            }
         }
     }
 }

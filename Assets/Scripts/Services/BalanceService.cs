@@ -4,8 +4,8 @@ namespace Services
 {
     public class BalanceService : IBalanceService
     {
-        public event Action<int> BalanceChanged;
-        private int _money = 1000000000;
+        public event Action<float> BalanceChanged;
+        private float _money = 1000;
 
         public void Pay(int amount)
         {

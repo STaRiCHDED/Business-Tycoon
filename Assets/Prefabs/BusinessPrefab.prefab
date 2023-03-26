@@ -100,7 +100,7 @@ MonoBehaviour:
   _levelLabel: {fileID: 5291537746698670583}
   _incomeLabel: {fileID: 2437824791573864269}
   _upgradePriceLabel: {fileID: 2755139425279416666}
-  _improvementViewPrefab: {fileID: 4450303004419667588, guid: d78687377a06cf34798cc445e78dde55, type: 3}
+  _improvementPrefab: {fileID: 948968248943680785, guid: d78687377a06cf34798cc445e78dde55, type: 3}
   _improvementsSpawnRoot: {fileID: 2192027945389004867}
 --- !u!114 &4360780632764273935
 MonoBehaviour:
