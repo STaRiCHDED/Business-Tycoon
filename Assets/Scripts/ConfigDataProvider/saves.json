@@ -1,55 +1,47 @@
 {
   "endTime": "2023-03-26T11:47:01Z",
-  "balance": 200000,
+  "balance": 45000,
   "businesses": [
     {
-      "name": "Coffee Shop",
-      "level": 2,
-      "incomeDelay": 5,
-      "income": 3,
-      "improvements": [
-        true,
-        true
-      ]
-    },
-    {
-      "name": "Restaurant",
-      "level": 3,
-      "incomeDelay": 5,
-      "income": 3,
-      "improvements": [
-        true,
-        false
-      ]
-    },
-    {
-      "name": "Clothing Store",
+      "name": "Candymarket",
       "level": 1,
-      "incomeDelay": 5,
-      "income": 3,
       "improvements": [
-        true,
-        false
+        {
+          "name":"Additional Employee",
+          "isPurchased": true
+        },
+        {
+          "name":"ImprovedSupplies",
+          "isPurchased": true
+        }
       ]
     },
     {
-      "name": "Gym",
+      "name": "Bank",
       "level": 2,
-      "incomeDelay": 5,
-      "income": 3,
       "improvements": [
-        false,
-        false
+        {
+          "name":"Up",
+          "isPurchased": true
+        },
+        {
+          "name":"Some",
+          "isPurchased": false
+        }
       ]
     },
     {
-      "name": "Pet Store",
-      "level": 1,
-      "incomeDelay": 5,
-      "income": 3,
+      "name": "GameDev Studio",
+      "level": 5,
       "improvements": [
-        false,
-        false
+        {
+          "name":"New Manager",
+          "isPurchased": false
+        },
+        {
+          "name":"Better Pc's",
+          "isPurchased": false
+        }
       ]
     }
   ]
