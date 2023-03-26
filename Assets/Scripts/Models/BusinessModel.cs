@@ -4,6 +4,8 @@ namespace Models
 {
     public class BusinessModel
     {
+        public int BasePrice { get; }
+        public int BaseIncome { get; }
         public string Name { get; }
         public int CurrentLevel { get; private set; }
         public int CurrentIncome { get; private set; }
@@ -16,6 +18,9 @@ namespace Models
         
         public BusinessModel(BusinessConfigModel businessConfigModel)
         {
+            BasePrice = businessConfigModel.UpgradePrice;
+            BaseIncome = businessConfigModel.Income;
+            
             Name = businessConfigModel.Name;
             CurrentLevel = businessConfigModel.Level;
             CurrentIncome = businessConfigModel.Income;

@@ -15,7 +15,9 @@ namespace Controllers
         {
             _businessView = GetComponent<BusinessView>();
             _businessView.SetClickCallback(LevelUp);
+            
             _businessModel = new BusinessModel(configModel);
+            _businessView.SpawnImprovements(_businessModel.Improvements);
             DisplayView();
         }
         
@@ -31,8 +33,8 @@ namespace Controllers
                 balanceService.Pay(price);
                 _businessModel.UpdateLevel();
                 
-                var newUpgradePrice = configService.RecalculateUpgradePrice(_businessModel.CurrentLevel, _businessModel.CurrentUpgradePrice);
-                var newIncome = configService.RecalculateIncome(_businessModel.CurrentLevel, _businessModel.CurrentIncome,
+                var newUpgradePrice = configService.RecalculateUpgradePrice(_businessModel.CurrentLevel, _businessModel.BasePrice);
+                var newIncome = configService.RecalculateIncome(_businessModel.CurrentLevel, _businessModel.BaseIncome,
                     _businessModel.Improvements[0].IncomeMultiplier,
                     _businessModel.Improvements[1].IncomeMultiplier);
                 

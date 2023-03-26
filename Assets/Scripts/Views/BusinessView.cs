@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using Models;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Views
 {
@@ -38,7 +37,7 @@ namespace Views
             _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.CurrentUpgradePrice)}$";
         }
 
-        public void ShowImprovements(IReadOnlyList<ImprovementModel> improvements)
+        public void SpawnImprovements(IReadOnlyList<ImprovementModel> improvements)
         {
             foreach (var improvement in improvements)
             {
