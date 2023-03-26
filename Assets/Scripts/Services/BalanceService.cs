@@ -5,15 +5,12 @@ namespace Services
     public class BalanceService : IBalanceService
     {
         public event Action<int> BalanceChanged;
-        private int _money;
+        private int _money = 1000000000;
 
         public void Pay(int amount)
         {
-            if (HasEnoughMoney(amount))
-            {
-                _money -= amount;
-                BalanceChanged?.Invoke(_money);
-            }
+            _money -= amount;
+            BalanceChanged?.Invoke(_money);
         }
 
         public void Receive(int amount)

@@ -14,14 +14,15 @@ namespace Views
     
         [SerializeField]
         private TextMeshProUGUI _stateLabel;
+        
 
         private string _purchased = "Purchased";
 
-        public void Show(ImprovementConfigModel improvementConfig)
+        public void Show(ImprovementModel improvementModel)
         {
-            _nameLabel.text = improvementConfig.Name;
-            _additionalPercentageIncomeLabel.text = "Income +" + improvementConfig.IncomeMultiplier + "%";
-            _stateLabel.text = $"Price- {improvementConfig.Price}$" ;
+            _nameLabel.text = improvementModel.Name;
+            _additionalPercentageIncomeLabel.text = "Income +" + improvementModel.IncomeMultiplier + "%";
+            _stateLabel.text = "Price- " + improvementModel.Price;
         }
     }
 }

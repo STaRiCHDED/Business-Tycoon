@@ -2,17 +2,17 @@
 {
     public class ImprovementModel
     {
-        private string _name;
-        private int _incomeMultiplier;
-        private int _price;
-        private bool _isPurchased;
+        public string Name { get; }
+        public int IncomeMultiplier { get; }
+        public int Price { get; }
+        public bool IsPurchased { get; }
 
         public ImprovementModel(ImprovementConfigModel improvementConfigModel)
         {
-            _name = improvementConfigModel.Name;
-            _incomeMultiplier = improvementConfigModel.IncomeMultiplier;
-            _price = improvementConfigModel.Price;
-            _isPurchased = improvementConfigModel.IsPurchased;
+            Name = improvementConfigModel.Name;
+            IncomeMultiplier = improvementConfigModel.IncomeMultiplier;
+            Price = improvementConfigModel.Price;
+            IsPurchased = improvementConfigModel.IsPurchased;
         }
     }
 }

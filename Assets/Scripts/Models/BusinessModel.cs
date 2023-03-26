@@ -4,24 +4,42 @@ namespace Models
 {
     public class BusinessModel
     {
-        private string _name;
-        private int _currentLevel;
-        private int _currentIncome;
-        private int _currentIncomeDelay;
-        private int _currentUpgradePrice;
+        public string Name { get; }
+        public int CurrentLevel { get; private set; }
+        public int CurrentIncome { get; private set; }
+        public int CurrentIncomeDelay { get; }
+        public int CurrentUpgradePrice { get; private set; }
+
+        public IReadOnlyList<ImprovementModel> Improvements => _improvements;
+        
         private List<ImprovementModel> _improvements = new();
         
         public BusinessModel(BusinessConfigModel businessConfigModel)
         {
-            _name = businessConfigModel.Name;
-            _currentLevel = businessConfigModel.Level;
-            _currentIncome = businessConfigModel.Income;
-            _currentIncomeDelay = businessConfigModel.IncomeDelay;
-            _currentUpgradePrice = businessConfigModel.UpgradePrice;
-            for (var i = 0; i < businessConfigModel.Improvements.Count; i++)
+            Name = businessConfigModel.Name;
+            CurrentLevel = businessConfigModel.Level;
+            CurrentIncome = businessConfigModel.Income;
+            CurrentIncomeDelay = businessConfigModel.IncomeDelay;
+            CurrentUpgradePrice = businessConfigModel.UpgradePrice;
+            foreach (var improvementConfigModel in businessConfigModel.Improvements)
             {
-                _improvements[i] = new ImprovementModel(businessConfigModel.Improvements[i]);
+                _improvements.Add(new ImprovementModel(improvementConfigModel));
             }
+        }
+
+        public void UpdateLevel()
+        {
+            CurrentLevel++;
+        }
+
+        public void UpdatePrice(int newPrice)
+        {
+            CurrentUpgradePrice = newPrice;
+        }
+
+        public void UpdateIncome(int newIncome)
+        {
+            CurrentIncome = newIncome;
         }
     }
 }

@@ -30,14 +30,17 @@ namespace Views
 
         private Action _onClicked;
     
-        public void Show(BusinessConfigModel businessConfigModel)
+        public void Show(BusinessModel businessModel)
         {
-            _nameLabel.text = businessConfigModel.Name;
-            _levelLabel.text = $"LVL {Convert.ToString(businessConfigModel.Level)}";
-            _incomeLabel.text = $"Income\n{Convert.ToString(businessConfigModel.Income)}$";
-            _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessConfigModel.UpgradePrice)}$";
+            _nameLabel.text = businessModel.Name;
+            _levelLabel.text = $"LVL {Convert.ToString(businessModel.CurrentLevel)}";
+            _incomeLabel.text = $"Income\n{Convert.ToString(businessModel.CurrentIncome)}$";
+            _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.CurrentUpgradePrice)}$";
+        }
 
-            foreach (var improvement in businessConfigModel.Improvements)
+        public void ShowImprovements(IReadOnlyList<ImprovementModel> improvements)
+        {
+            foreach (var improvement in improvements)
             {
                 var businessImprovement = Instantiate(_improvementViewPrefab, _improvementsSpawnRoot);
                 businessImprovement.Show(improvement);

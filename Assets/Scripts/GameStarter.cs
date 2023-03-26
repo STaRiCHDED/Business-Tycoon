@@ -8,6 +8,7 @@ public class GameStarter : MonoBehaviour
     {
         var serviceLocator = new ServiceLocator();
         serviceLocator.RegisterSingle<IBalanceService>(new BalanceService());
+        serviceLocator.RegisterSingle<IConfigService>(new ConfigService());
         serviceLocator.RegisterSingle<IConfigReaderService>(new ConfigReaderService());
         serviceLocator.RegisterSingle<IConfigWriterService>(new ConfigWriterService());
         var data = ServiceLocator.Instance.GetSingle<IConfigReaderService>().ReadConfig();

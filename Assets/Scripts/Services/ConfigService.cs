@@ -9,7 +9,7 @@
 
         public int RecalculateIncome(int level, int baseIncome, int firstImprovementBoost, int secondImprovementBoost)
         {
-            return level * baseIncome * (1 + firstImprovementBoost + secondImprovementBoost);
+            return level * baseIncome * (1 + firstImprovementBoost/100 + secondImprovementBoost/100);
         }
     }
 }
