@@ -31,18 +31,10 @@ namespace Controllers
             if (balanceService.HasEnoughMoney(price))
             {
                 balanceService.Pay(price);
+                
                 _businessModel.UpdateLevel();
-
-                var firstImprovement = _businessModel.Improvements[0];
-                var secondImprovement = _businessModel.Improvements[1];
-                
-                var newUpgradePrice = configService.RecalculateUpgradePrice(_businessModel.CurrentLevel, _businessModel.BasePrice);
-                var newIncome = configService.RecalculateIncome(_businessModel.CurrentLevel, _businessModel.BaseIncome,
-                    firstImprovement.IsPurchased,firstImprovement.IncomeMultiplier,
-                    secondImprovement.IsPurchased, secondImprovement.IncomeMultiplier);
-                
-                _businessModel.UpdatePrice(newUpgradePrice);
-                _businessModel.UpdateIncome(newIncome);
+                _businessModel.UpdatePrice();
+                _businessModel.UpdateIncome();
                 
                 DisplayView();
             }
