@@ -1,7 +1,10 @@
 using SimpleEventBus;
 using SimpleEventBus.Interfaces;
 
-public class EventStreams
+namespace Events
 {
-    public static IEventBus Game { get; } = new EventBus();
+    public class EventStreams
+    {
+        public static IEventBus Game { get; } = new EventBus();
+    }
 }

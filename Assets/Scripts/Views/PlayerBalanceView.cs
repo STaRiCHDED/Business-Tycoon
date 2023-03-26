@@ -1,22 +1,24 @@
-
-using System;
+using Services;
 using TMPro;
 using UnityEngine;
 
-public class PlayerBalanceView : MonoBehaviour
+namespace Views
 {
-    [SerializeField]
-    private TextMeshProUGUI _balance;
-
-    private void Start()
+    public class PlayerBalanceView : MonoBehaviour
     {
-        var moneyService = ServiceLocator.Instance.GetSingle<IBalanceService>();
-        moneyService.BalanceChanged += ShowBalance;
-    }
+        [SerializeField]
+        private TextMeshProUGUI _balance;
 
-    private void ShowBalance(int balance)
-    {
-        _balance.text = "Balance" + balance + "$";
-    }
+        private void Start()
+        {
+            var moneyService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+            moneyService.BalanceChanged += ShowBalance;
+        }
+
+        private void ShowBalance(int balance)
+        {
+            _balance.text = "Balance" + balance + "$";
+        }
     
+    }
 }

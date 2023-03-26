@@ -1,12 +1,13 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerBalanceConfig", menuName = "PlayerBalanceConfig")]
-public class PlayerConfigModel : ScriptableObject
+namespace Models
 {
-    public PlayerBalanceModel PlayerBalanceModel => _playerBalanceModel;
+    [CreateAssetMenu(fileName = "PlayerBalanceConfig", menuName = "PlayerBalanceConfig")]
+    public class PlayerConfigModel : ScriptableObject
+    {
+        public PlayerBalanceModel PlayerBalanceModel => _playerBalanceModel;
     
-    [SerializeField]
-    private PlayerBalanceModel _playerBalanceModel;
+        [SerializeField]
+        private PlayerBalanceModel _playerBalanceModel;
+    }
 }

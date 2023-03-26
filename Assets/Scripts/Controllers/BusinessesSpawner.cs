@@ -1,28 +1,31 @@
-﻿using System;
+﻿using Models;
 using UnityEngine;
 
-public class BusinessesSpawner : MonoBehaviour
+namespace Controllers
 {
-    [SerializeField]
-    private BusinessesConfigModel _businessesConfigModel;
+    public class BusinessesSpawner : MonoBehaviour
+    {
+        [SerializeField]
+        private BusinessesConfigModel _businessesConfigModel;
 
-    [SerializeField]
-    private BusinessController _businessPrefab;
+        [SerializeField]
+        private BusinessController _businessPrefab;
     
-    [SerializeField]
-    private RectTransform _spawnRoot;
+        [SerializeField]
+        private RectTransform _spawnRoot;
 
-    private void Start()
-    {
-        Spawn();
-    }
-
-    private void Spawn()
-    {
-        foreach (var businessModel in _businessesConfigModel.Businesses)
+        private void Start()
         {
-            var business = Instantiate(_businessPrefab, _spawnRoot);
-            business.Initialize(businessModel);
+            Spawn();
+        }
+
+        private void Spawn()
+        {
+            foreach (var businessModel in _businessesConfigModel.Businesses)
+            {
+                var business = Instantiate(_businessPrefab, _spawnRoot);
+                business.Initialize(businessModel);
+            }
         }
     }
 }

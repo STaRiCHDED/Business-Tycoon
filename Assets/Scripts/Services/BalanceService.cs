@@ -1,27 +1,30 @@
 ﻿using System;
 
-public class BalanceService : IBalanceService
+namespace Services
 {
-    public event Action<int> BalanceChanged;
-    private int _money;
-
-    public void Pay(int amount)
+    public class BalanceService : IBalanceService
     {
-        if (HasEnoughMoney(amount))
+        public event Action<int> BalanceChanged;
+        private int _money;
+
+        public void Pay(int amount)
         {
-            _money -= amount;
+            if (HasEnoughMoney(amount))
+            {
+                _money -= amount;
+                BalanceChanged?.Invoke(_money);
+            }
+        }
+
+        public void Receive(int amount)
+        {
+            _money += amount;
             BalanceChanged?.Invoke(_money);
         }
-    }
 
-    public void Receive(int amount)
-    {
-        _money += amount;
-        BalanceChanged?.Invoke(_money);
-    }
-
-    public bool HasEnoughMoney(int amount)
-    {
-        return _money >= amount;
+        public bool HasEnoughMoney(int amount)
+        {
+            return _money >= amount;
+        }
     }
 }

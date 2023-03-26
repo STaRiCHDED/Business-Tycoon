@@ -1,15 +1,20 @@
-﻿using UnityEngine;
+﻿using Models;
+using UnityEngine;
+using Views;
 
-public class BusinessController : MonoBehaviour
+namespace Controllers
 {
-    [SerializeField]
-    private BusinessView _businessView;
-    
-    private BusinessModel _businessModel;
-
-    public void Initialize(BusinessModel model)
+    public class BusinessController : MonoBehaviour
     {
-        _businessModel = model;
-        _businessView.Show(_businessModel);
+        [SerializeField]
+        private BusinessView _businessView;
+    
+        private BusinessModel _businessModel;
+
+        public void Initialize(BusinessModel model)
+        {
+            _businessModel = model;
+            _businessView.Show(_businessModel);
+        }
     }
 }

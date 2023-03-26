@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ServiceLocator : IDisposable
+namespace Services
 {
-    public static ServiceLocator Instance { get; private set; }
+    public class ServiceLocator : IDisposable
+    {
+        public static ServiceLocator Instance { get; private set; }
 
-    private readonly Dictionary<Type, IService> _services = new();
+        private readonly Dictionary<Type, IService> _services = new();
 
-    public ServiceLocator()
-    {
-        Instance = this;
-    }
-    
-    public void RegisterSingle<TService>(TService service) where TService : IService
-    {
-        _services[typeof(TService)] = service;
-    }
-
-    public TService GetSingle<TService>() where TService : class, IService
-    {
-        return _services[typeof(TService)] as TService;
-    }
-    
-    public void Dispose()
-    {
-        foreach (var service in _services.Values)
+        public ServiceLocator()
         {
-            if (service is IDisposable disposableService)
+            Instance = this;
+        }
+    
+        public void RegisterSingle<TService>(TService service) where TService : IService
+        {
+            _services[typeof(TService)] = service;
+        }
+
+        public TService GetSingle<TService>() where TService : class, IService
+        {
+            return _services[typeof(TService)] as TService;
+        }
+    
+        public void Dispose()
+        {
+            foreach (var service in _services.Values)
             {
-                disposableService.Dispose();
+                if (service is IDisposable disposableService)
+                {
+                    disposableService.Dispose();
+                }
             }
         }
     }

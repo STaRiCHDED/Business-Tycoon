@@ -1,23 +1,27 @@
-﻿using TMPro;
+﻿using Models;
+using TMPro;
 using UnityEngine;
 
-public class ImprovementView : MonoBehaviour
+namespace Views
 {
-    [SerializeField]
-    private TextMeshProUGUI _nameLabel;
-    
-    [SerializeField]
-    private TextMeshProUGUI _additionalPercentageIncomeLabel;
-    
-    [SerializeField]
-    private TextMeshProUGUI _stateLabel;
-
-    private string _purchased = "Purchased";
-
-    public void Show(ImprovementModel improvement)
+    public class ImprovementView : MonoBehaviour
     {
-        _nameLabel.text = improvement.Name;
-        _additionalPercentageIncomeLabel.text = "Income +" + improvement.AdditionalPercentageIncome + "%";
-        _stateLabel.text = $"Price- {improvement.Price}$" ;
+        [SerializeField]
+        private TextMeshProUGUI _nameLabel;
+    
+        [SerializeField]
+        private TextMeshProUGUI _additionalPercentageIncomeLabel;
+    
+        [SerializeField]
+        private TextMeshProUGUI _stateLabel;
+
+        private string _purchased = "Purchased";
+
+        public void Show(ImprovementModel improvement)
+        {
+            _nameLabel.text = improvement.Name;
+            _additionalPercentageIncomeLabel.text = "Income +" + improvement.AdditionalPercentageIncome + "%";
+            _stateLabel.text = $"Price- {improvement.Price}$" ;
+        }
     }
 }

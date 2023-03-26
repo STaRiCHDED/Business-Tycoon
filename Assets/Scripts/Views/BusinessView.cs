@@ -1,39 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
+using Models;
 using TMPro;
 using UnityEngine;
 
-public class BusinessView : MonoBehaviour
+namespace Views
 {
-    [SerializeField]
-    private TextMeshProUGUI _nameLabel;
-    
-    [SerializeField]
-    private TextMeshProUGUI _levelLabel;
-    
-    [SerializeField]
-    private TextMeshProUGUI _incomeLabel;
-
-    [SerializeField] 
-    private TextMeshProUGUI _upgradePriceLabel;
-
-    [SerializeField]
-    private ImprovementView _improvementViewPrefab;
-
-    [SerializeField]
-    private RectTransform _improvementsSpawnRoot;
-    
-    public void Show(BusinessModel businessModel)
+    public class BusinessView : MonoBehaviour
     {
-        _nameLabel.text = businessModel.Name;
-        _levelLabel.text = $"LVL {Convert.ToString(businessModel.Level)}";
-        _incomeLabel.text = $"Income\n{Convert.ToString(businessModel.Income)}$";
-        _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.UpgradePrice)}$";
+        [SerializeField]
+        private TextMeshProUGUI _nameLabel;
+    
+        [SerializeField]
+        private TextMeshProUGUI _levelLabel;
+    
+        [SerializeField]
+        private TextMeshProUGUI _incomeLabel;
 
-        foreach (var improvement in businessModel.Improvements)
+        [SerializeField] 
+        private TextMeshProUGUI _upgradePriceLabel;
+
+        [SerializeField]
+        private ImprovementView _improvementViewPrefab;
+
+        [SerializeField]
+        private RectTransform _improvementsSpawnRoot;
+    
+        public void Show(BusinessModel businessModel)
         {
-            var businessImprovement = Instantiate(_improvementViewPrefab, _improvementsSpawnRoot);
-            businessImprovement.Show(improvement);
+            _nameLabel.text = businessModel.Name;
+            _levelLabel.text = $"LVL {Convert.ToString(businessModel.Level)}";
+            _incomeLabel.text = $"Income\n{Convert.ToString(businessModel.Income)}$";
+            _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.UpgradePrice)}$";
+
+            foreach (var improvement in businessModel.Improvements)
+            {
+                var businessImprovement = Instantiate(_improvementViewPrefab, _improvementsSpawnRoot);
+                businessImprovement.Show(improvement);
+            }
         }
     }
 }

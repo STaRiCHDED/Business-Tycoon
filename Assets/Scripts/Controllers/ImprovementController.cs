@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class ImprovementController : MonoBehaviour
+namespace Controllers
 {
+    public class ImprovementController : MonoBehaviour
+    {
     
+    }
 }
