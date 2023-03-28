@@ -8,6 +8,7 @@ namespace Controllers
 {
     public class BusinessController : MonoBehaviour
     {
+        public string Name => _businessModel.Name;
         private BusinessModel _businessModel;
         private BusinessView _businessView;
         
@@ -16,8 +17,21 @@ namespace Controllers
             _businessView = GetComponent<BusinessView>();
             _businessView.SetClickCallback(LevelUp);
             _businessView.Initialize(configModel);
-            
             _businessModel = new BusinessModel(configModel);
+            DisplayView();
+        }
+        
+        public void UpdateBusinessData(BusinessJson updatedData)
+        {
+            if (updatedData != null)
+            {
+                _businessModel.UpdateModel(updatedData);
+            }
+            Debug.Log($"Business\nName:{_businessModel.Name}\nLevel:{_businessModel.CurrentLevel}");
+            foreach (var businessModelImprovement in _businessModel.Improvements)
+            {
+                Debug.Log($"Improvement \nName:{businessModelImprovement.Name}\nIsPurchased:{businessModelImprovement.IsPurchased}");
+            }
             DisplayView();
         }
         

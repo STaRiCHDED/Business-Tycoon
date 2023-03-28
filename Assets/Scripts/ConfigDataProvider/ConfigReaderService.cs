@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ConfigReaderService : IConfigReaderService
 {
-    public BusinessData ReadConfig()
+    public BusinessDataJson ReadConfig()
     {
         var jsonData = File.ReadAllText("Assets/Scripts/ConfigDataProvider/saves.json");
         Debug.Log(jsonData);
-        BusinessData data = JsonConvert.DeserializeObject<BusinessData>(jsonData);
-        return data;
+        BusinessDataJson dataJson = JsonConvert.DeserializeObject<BusinessDataJson>(jsonData);
+        return dataJson;
     }
 }
