@@ -8,9 +8,6 @@ namespace Controllers
     public class BusinessesSpawner : MonoBehaviour
     {
         [SerializeField]
-        private BusinessesConfig _businessesConfig;
-
-        [SerializeField]
         private BusinessController _businessPrefab;
     
         [SerializeField]
@@ -23,18 +20,18 @@ namespace Controllers
 
         private void Spawn()
         {
-            var data = ServiceLocator.Instance.GetSingle<IConfigReaderService>().ReadConfig();
-            Debug.Log($"Updating data:{data.EndTime}, Balance{data.Balance}");
-            var saveData = new Dictionary<string, BusinessJson>();
-            foreach (var dataBusiness in data.Businesses)
+            var instanceData = ServiceLocator.Instance.GetSingle<IConfigReaderService>().ReadInstanceData();
+            var saveData = ServiceLocator.Instance.GetSingle<IConfigReaderService>().ReadConfig();
+            var saveDataDict = new Dictionary<string, BusinessData>();
+            foreach (var dataBusiness in saveData.Businesses)
             {
-                saveData.Add(dataBusiness.Name,dataBusiness);
+                saveDataDict.Add(dataBusiness.Name,dataBusiness);
             }
-            foreach (var businessModel in _businessesConfig.Businesses)
+            foreach (var businessModel in instanceData.Businesses)
             {
                 var business = Instantiate(_businessPrefab, _spawnRoot);
                 business.Initialize(businessModel);
-                if (saveData.TryGetValue(business.Name, out var updatedData))
+                if (saveDataDict.TryGetValue(business.Name, out var updatedData))
                 {
                     business.UpdateBusinessData(updatedData);
                 }

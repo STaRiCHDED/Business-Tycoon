@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Models;
 using Newtonsoft.Json;
 
-public class BusinessDataJson
+public class ConfigData
 {
     [JsonProperty("endTime")] 
     [JsonConverter(typeof(CustomDateTimeConverter))]
@@ -10,5 +11,5 @@ public class BusinessDataJson
     [JsonProperty("balance")] 
     public int Balance { get; set;}
     [JsonProperty("businesses")] 
-    public List<BusinessJson> Businesses { get; set;}
+    public List<BusinessData> Businesses { get; set;}
 }

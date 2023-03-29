@@ -1,14 +1,13 @@
 ﻿using System;
-using Models;
 
 namespace Services
 {
     public class BalanceService : IBalanceService
     {
         public event Action<float> BalanceChanged;
-        private readonly PlayerBalanceModel _playerBalanceModel;
+        private readonly ConfigData _playerBalanceModel;
 
-        public BalanceService(PlayerBalanceModel playerBalanceModel)
+        public BalanceService(ConfigData playerBalanceModel)
         {
             _playerBalanceModel = playerBalanceModel;
         }

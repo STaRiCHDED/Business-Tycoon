@@ -11,8 +11,8 @@ namespace Views
 
         private void Start()
         {
-            var moneyService = ServiceLocator.Instance.GetSingle<IBalanceService>();
-            moneyService.BalanceChanged += ShowBalance;
+            //var moneyService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+            //moneyService.BalanceChanged += ShowBalance;
         }
 
         private void ShowBalance(float balance)

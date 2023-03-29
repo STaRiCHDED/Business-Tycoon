@@ -9,14 +9,14 @@ namespace Controllers
     public class ImprovementController : MonoBehaviour
     {
         private ImprovementView _improvementView;
-        private ImprovementModel _improvementModel;
+        private ImprovementData _improvementModel;
         
-        public void Initialize(ImprovementConfigModel improvementConfigModel)
+        public void Initialize(ImprovementData improvementData)
         {
             _improvementView = GetComponent<ImprovementView>();
-            _improvementModel = new ImprovementModel(improvementConfigModel);
+            _improvementModel = improvementData;
             _improvementView.SetClickCallBack(BuyImprovement);
-            _improvementView.Show(_improvementModel);
+            //_improvementView.Show(_improvementModel);
         }
 
         private void BuyImprovement()
@@ -27,11 +27,15 @@ namespace Controllers
             
             if (balanceService.HasEnoughMoney(improvementPrice))
             {
-               _improvementModel.ChangeState(true);
+               ChangeState(true);
                balanceService.Pay(improvementPrice);
               
-               _improvementView.Show(_improvementModel);
+               //_improvementView.Show(_improvementModel);
             }
+        }
+        public void ChangeState(bool isPurchased)
+        {
+            _improvementModel.IsPurchased = isPurchased;
         }
     }
 }

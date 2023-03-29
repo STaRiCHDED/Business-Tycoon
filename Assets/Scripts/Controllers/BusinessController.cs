@@ -1,5 +1,4 @@
-﻿using System;
-using Models;
+﻿using Models;
 using Services;
 using UnityEngine;
 using Views;
@@ -8,30 +7,24 @@ namespace Controllers
 {
     public class BusinessController : MonoBehaviour
     {
-        public string Name => _businessModel.Name;
-        private BusinessModel _businessModel;
+        public string Name => _businessData.Name;
+        private BusinessData _businessData;
         private BusinessView _businessView;
+        private IConfigService _configService;
         
-        public void Initialize(BusinessConfigModel configModel)
+        public void Initialize(BusinessData configModel)
         {
+            _configService = ServiceLocator.Instance.GetSingle<IConfigService>();
             _businessView = GetComponent<BusinessView>();
             _businessView.SetClickCallback(LevelUp);
             _businessView.Initialize(configModel);
-            _businessModel = new BusinessModel(configModel);
+            _businessData = configModel;
             DisplayView();
         }
         
-        public void UpdateBusinessData(BusinessJson updatedData)
+        public void UpdateBusinessData(BusinessData updatedData)
         {
-            if (updatedData != null)
-            {
-                _businessModel.UpdateModel(updatedData);
-            }
-            Debug.Log($"Business\nName:{_businessModel.Name}\nLevel:{_businessModel.CurrentLevel}");
-            foreach (var businessModelImprovement in _businessModel.Improvements)
-            {
-                Debug.Log($"Improvement \nName:{businessModelImprovement.Name}\nIsPurchased:{businessModelImprovement.IsPurchased}");
-            }
+            _businessData = updatedData; 
             DisplayView();
         }
         
@@ -40,23 +33,34 @@ namespace Controllers
             var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
             var configService = ServiceLocator.Instance.GetSingle<IConfigService>();
 
-            var price = _businessModel.CurrentUpgradePrice;
+            var price = _businessData.UpgradePrice;
 
             if (balanceService.HasEnoughMoney(price))
             {
                 balanceService.Pay(price);
-                
-                _businessModel.UpdateLevel();
-                _businessModel.UpdatePrice();
-                _businessModel.UpdateIncome();
-                
+                UpdateLevel();
+                UpdatePrice();
+                UpdateIncome();
                 DisplayView();
             }
         }
 
         private void DisplayView()
         {
-            _businessView.Show(_businessModel);
+            _businessView.Show(_businessData);
+        }
+        private void UpdateLevel()
+        {
+            _businessData.Level++;
+        }
+        private void UpdatePrice()
+        {
+            _configService.RecalculateUpgradePrice(_businessData.Level,_businessData.BasePrice);
+        }
+
+        private void UpdateIncome()
+        {
+            _configService.RecalculateIncome(_businessData.Level, _businessData.BaseIncome, _businessData.Improvements);
         }
     }
 }

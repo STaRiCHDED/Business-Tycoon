@@ -30,7 +30,7 @@ namespace Views
 
         private Action _onClicked;
 
-        public void Initialize(BusinessConfigModel configModel)
+        public void Initialize(BusinessData configModel)
         {
             foreach (var improvement in configModel.Improvements)
             {
@@ -38,12 +38,12 @@ namespace Views
                 businessImprovement.Initialize(improvement);
             }
         }
-        public void Show(BusinessModel businessModel)
+        public void Show(BusinessData businessModel)
         {
             _nameLabel.text = businessModel.Name;
-            _levelLabel.text = $"LVL {Convert.ToString(businessModel.CurrentLevel)}";
-            _incomeLabel.text = $"Income\n{Convert.ToString(businessModel.CurrentIncome)}$";
-            _upgradePriceLabel.text = $"LVL UP\nPrice {Convert.ToString(businessModel.CurrentUpgradePrice)}$";
+            _levelLabel.text = $"LVL {businessModel.Level}";
+            _incomeLabel.text = $"Income\n{businessModel.Income}$";
+            _upgradePriceLabel.text = $"LVL UP\nPrice {businessModel.UpgradePrice}$";
         }
         
         [UsedImplicitly]

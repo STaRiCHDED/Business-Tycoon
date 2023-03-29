@@ -35,14 +35,14 @@ namespace Views
         {
             _onClicked?.Invoke();
         }
-        public void Show(ImprovementModel improvementModel)
+        public void Show(ImprovementData improvementModel)
         {
             _nameLabel.text = improvementModel.Name;
             _additionalPercentageIncomeLabel.text = "Income +" + improvementModel.IncomeMultiplier + "%";
             _stateLabel.text = CheckPurchaseState(improvementModel);
 
         }
-        private string CheckPurchaseState(ImprovementModel improvementModel)
+        private string CheckPurchaseState(ImprovementData improvementModel)
         {
             if (improvementModel.IsPurchased)
             {
