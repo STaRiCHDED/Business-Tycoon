@@ -5,13 +5,14 @@ namespace Services
 {
     public class ServiceLocator : IDisposable
     {
-        public static ServiceLocator Instance { get; private set; }
+        public static ServiceLocator Instance => _instance ??= new ServiceLocator();
 
+        private static ServiceLocator _instance;
+        
         private readonly Dictionary<Type, IService> _services = new();
 
-        public ServiceLocator()
+        private ServiceLocator()
         {
-            Instance = this;
         }
     
         public void RegisterSingle<TService>(TService service) where TService : IService
