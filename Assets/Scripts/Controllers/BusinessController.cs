@@ -7,8 +7,8 @@ namespace Controllers
 {
     public class BusinessController : MonoBehaviour
     {
-        public string Name => _businessData.Name;
-        private BusinessData _businessData;
+        public string Name => BusinessData.Name;
+        public BusinessData BusinessData { get; private set; }
         private BusinessView _businessView;
         private IConfigService _configService;
         
@@ -18,13 +18,13 @@ namespace Controllers
             _businessView = GetComponent<BusinessView>();
             _businessView.SetClickCallback(LevelUp);
             _businessView.Initialize(configModel);
-            _businessData = configModel;
+            BusinessData = configModel;
             DisplayView();
         }
         
         public void UpdateBusinessData(BusinessData updatedData)
         {
-            _businessData = updatedData; 
+            BusinessData = updatedData; 
             DisplayView();
         }
         
@@ -33,7 +33,7 @@ namespace Controllers
             var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
             var configService = ServiceLocator.Instance.GetSingle<IConfigService>();
 
-            var price = _businessData.UpgradePrice;
+            var price = BusinessData.UpgradePrice;
 
             if (balanceService.HasEnoughMoney(price))
             {
@@ -47,20 +47,20 @@ namespace Controllers
 
         private void DisplayView()
         {
-            _businessView.Show(_businessData);
+            _businessView.Show(BusinessData);
         }
         private void UpdateLevel()
         {
-            _businessData.Level++;
+            BusinessData.Level++;
         }
         private void UpdatePrice()
         {
-            _configService.RecalculateUpgradePrice(_businessData.Level,_businessData.BasePrice);
+            _configService.RecalculateUpgradePrice(BusinessData.Level,BusinessData.BasePrice);
         }
 
         private void UpdateIncome()
         {
-            _configService.RecalculateIncome(_businessData.Level, _businessData.BaseIncome, _businessData.Improvements);
+            _configService.RecalculateIncome(BusinessData.Level, BusinessData.BaseIncome, BusinessData.Improvements);
         }
     }
 }

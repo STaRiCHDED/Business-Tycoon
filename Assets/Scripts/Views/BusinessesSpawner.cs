@@ -22,20 +22,40 @@ namespace Controllers
         {
             var instanceData = ServiceLocator.Instance.GetSingle<IConfigReaderService>().ReadInstanceData();
             var saveData = ServiceLocator.Instance.GetSingle<IConfigReaderService>().ReadConfig();
+            var newData = UpdateData(instanceData, saveData);
+            foreach (var businessModel in newData.Businesses)
+            {
+                var business = Instantiate(_businessPrefab, _spawnRoot);
+                business.Initialize(businessModel);
+            }
+            foreach (var businessModel in newData.Businesses)
+            {
+                var str = "";
+                str += $"Name {businessModel.Name}\n";
+                str += $"Income {businessModel.Level}\n";
+                foreach (var businessDataImprovement in businessModel.Improvements)
+                {
+                    str += $"Imp {businessDataImprovement.Name}  isPurchased {businessDataImprovement.IsPurchased} ";
+                }
+                Debug.Log(str);
+            }
+        }
+
+        private ConfigData UpdateData(ConfigData instanceData,ConfigData saveData)
+        {
             var saveDataDict = new Dictionary<string, BusinessData>();
             foreach (var dataBusiness in saveData.Businesses)
             {
                 saveDataDict.Add(dataBusiness.Name,dataBusiness);
             }
-            foreach (var businessModel in instanceData.Businesses)
+            for (var index = 0; index < instanceData.Businesses.Count; index++)
             {
-                var business = Instantiate(_businessPrefab, _spawnRoot);
-                business.Initialize(businessModel);
-                if (saveDataDict.TryGetValue(business.Name, out var updatedData))
+                if (saveDataDict.TryGetValue(instanceData.Businesses[index].Name, out var updatedData))
                 {
-                    business.UpdateBusinessData(updatedData);
+                    instanceData.Businesses[index] = updatedData;
                 }
             }
+            return instanceData;
         }
     }
 }

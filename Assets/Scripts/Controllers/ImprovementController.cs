@@ -33,7 +33,7 @@ namespace Controllers
                //_improvementView.Show(_improvementModel);
             }
         }
-        public void ChangeState(bool isPurchased)
+        private void ChangeState(bool isPurchased)
         {
             _improvementModel.IsPurchased = isPurchased;
         }
