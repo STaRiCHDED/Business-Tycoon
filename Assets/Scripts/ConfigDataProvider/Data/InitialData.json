@@ -3,7 +3,7 @@
   "businesses": [
     {
       "name": "Business1",
-      "currentLevel": 2,
+      "currentLevel": 1,
       "currentIncome":  5,
       "currentIncomeDelay": 5,
       "currentUpgradePrice": 5,
@@ -14,19 +14,19 @@
           "name":"Some1",
           "incomeMultiplier": 30,
           "price": 10,
-          "isPurchased": true
+          "isPurchased": false
         },
         {
           "name":"Some2",
           "incomeMultiplier": 50,
           "price": 10,
-          "isPurchased": true
+          "isPurchased": false
         }
       ]
     },
     {
       "name": "Business2",
-      "currentLevel": 2,
+      "currentLevel": 0,
       "currentIncome":  6,
       "currentIncomeDelay": 6,
       "currentUpgradePrice": 6,
@@ -37,7 +37,7 @@
           "name":"Some3",
           "incomeMultiplier": 20,
           "price": 12,
-          "isPurchased": true
+          "isPurchased": false
         },
         {
           "name":"Some4",
@@ -49,7 +49,7 @@
     },
     {
       "name": "Business3",
-      "currentLevel": 3,
+      "currentLevel": 0,
       "currentIncome":  7,
       "currentIncomeDelay": 7,
       "currentUpgradePrice": 7,
