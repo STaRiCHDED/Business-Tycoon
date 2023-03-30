@@ -7,18 +7,19 @@ namespace Controllers
 {
     public class BusinessController : MonoBehaviour
     {
+        [SerializeField] private BusinessView _businessView;
+        [SerializeField] private TimerController _timerController;
         public string Name => _businessData.Name;
         private BusinessData _businessData;
-        private BusinessView _businessView;
         private IConfigService _configService;
         
         public void Initialize(BusinessData configModel)
         {
             _configService = ServiceLocator.Instance.GetSingle<IConfigService>();
-            _businessView = GetComponent<BusinessView>();
             _businessView.SetClickCallback(LevelUp);
             _businessView.Initialize(configModel);
             _businessData = configModel;
+            _timerController.Initialize(configModel);
             DisplayView();
         }
         

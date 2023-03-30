@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3240685717705270332}
   - component: {fileID: 8544038132521036036}
   - component: {fileID: 4360780632764273935}
+  - component: {fileID: 2466931022430542303}
   m_Layer: 5
   m_Name: BusinessPrefab
   m_TagString: Untagged
@@ -114,6 +115,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2336dc3c9a4997bee8514ebe307ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _businessView: {fileID: 8544038132521036036}
+  _timerController: {fileID: 2466931022430542303}
+--- !u!114 &2466931022430542303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224873630555579864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20090985bc9ea8048bc014e4be4ab494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 2065931467990708230}
 --- !u!1 &2065931466255927082
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +852,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.014
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
