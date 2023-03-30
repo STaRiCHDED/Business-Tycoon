@@ -1,23 +1,21 @@
-﻿namespace Models
+﻿using System;
+
+namespace Models
 {
+    [Serializable]
     public class ImprovementModel
     {
         public string Name { get; }
-        public int IncomeMultiplier { get; }
-        public int Price { get; }
-        public bool IsPurchased { get; private set;}
+        public float IncomeMultiplier { get; }
+        public float Price { get; }
+        public bool IsPurchased { get; set; }
 
-        public ImprovementModel(ImprovementConfigModel improvementConfigModel)
+        public ImprovementModel(ImprovementConfigModel configModel)
         {
-            Name = improvementConfigModel.Name;
-            IncomeMultiplier = improvementConfigModel.IncomeMultiplier;
-            Price = improvementConfigModel.Price;
-            IsPurchased = improvementConfigModel.IsPurchased;
-        }
-
-        public void ChangeState(bool isPurchased)
-        {
-            IsPurchased = isPurchased;
+            Name = configModel.Name;
+            IncomeMultiplier = configModel.IncomeMultiplier;
+            Price = configModel.Price;
+            IsPurchased = configModel.IsPurchased;
         }
     }
 }

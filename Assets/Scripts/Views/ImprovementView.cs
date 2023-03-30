@@ -24,17 +24,17 @@ namespace Views
         private string _purchased = "Purchased";
 
         private Action _onClicked;
-
-        [UsedImplicitly]
-        public void SetClickCallBack(Action onClicked)
-        {
-            _onClicked = onClicked;
-        }
-        [UsedImplicitly]
+        
         public void Click()
         {
             _onClicked?.Invoke();
         }
+        
+        public void SetClickCallBack(Action onClicked)
+        {
+            _onClicked = onClicked;
+        }
+        
         public void Show(ImprovementModel improvementModel)
         {
             _nameLabel.text = improvementModel.Name;
@@ -50,7 +50,7 @@ namespace Views
                 return _purchased;
             }
 
-            return "Price " + improvementModel.Price;
+            return "Price " + improvementModel.Price + "$";
         }
         
     }

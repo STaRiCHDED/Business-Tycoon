@@ -1,3 +1,4 @@
+using System;
 using Services;
 using TMPro;
 using UnityEngine;
@@ -9,16 +10,22 @@ namespace Views
         [SerializeField]
         private TextMeshProUGUI _balance;
 
+        private IBalanceService _balanceService;
+
         private void Start()
         {
-            var moneyService = ServiceLocator.Instance.GetSingle<IBalanceService>();
-            moneyService.BalanceChanged += ShowBalance;
+            _balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+            _balanceService.BalanceChanged += ShowBalance;
         }
 
         private void ShowBalance(float balance)
         {
-            _balance.text = "Balance" + balance + "$";
+            _balance.text = "BALANCE: " + balance + "$";
         }
-    
+
+        private void OnDestroy()
+        {
+            _balanceService.BalanceChanged -= ShowBalance;
+        }
     }
 }

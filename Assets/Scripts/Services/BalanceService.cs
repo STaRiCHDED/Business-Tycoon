@@ -1,27 +1,33 @@
 ﻿using System;
+using Models;
 
 namespace Services
 {
     public class BalanceService : IBalanceService
     {
         public event Action<float> BalanceChanged;
-        private float _money = 1000;
-
-        public void Pay(int amount)
+        private readonly PlayerBalanceModel _playerBalanceModel;
+        
+        public BalanceService(PlayerBalanceModel playerBalanceModel)
         {
-            _money -= amount;
-            BalanceChanged?.Invoke(_money);
+            _playerBalanceModel = playerBalanceModel;
+        }
+        
+        public void Pay(float amount)
+        {
+            _playerBalanceModel.Balance -= amount;
+            BalanceChanged?.Invoke(_playerBalanceModel.Balance);
         }
 
-        public void Receive(int amount)
+        public void Receive(float amount)
         {
-            _money += amount;
-            BalanceChanged?.Invoke(_money);
+            _playerBalanceModel.Balance += amount;
+            BalanceChanged?.Invoke(_playerBalanceModel.Balance);
         }
 
-        public bool HasEnoughMoney(int amount)
+        public bool HasEnoughMoney(float amount)
         {
-            return _money >= amount;
+            return _playerBalanceModel.Balance >= amount;
         }
     }
 }

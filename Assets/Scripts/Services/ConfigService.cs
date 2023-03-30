@@ -1,19 +1,22 @@
-﻿namespace Services
+﻿using Models;
+
+namespace Services
 {
     public class ConfigService : IConfigService
     {
-        public int RecalculateUpgradePrice(int level, int basePrice)
+        public float RecalculateUpgradePrice(BusinessModel businessModel)
         {
-            return (level + 1) * basePrice;
+            return (businessModel.CurrentLevel + 1) * businessModel.BasePrice;
         }
 
-        public int RecalculateIncome(int level, int baseIncome,
-            bool isFirstPurchased, int firstImprovementBoost,
-            bool isSecondPurchased, int secondImprovementBoost)
+        public float RecalculateIncome(BusinessModel businessModel)
         {
-            firstImprovementBoost = isFirstPurchased ? firstImprovementBoost : 0;
-            secondImprovementBoost = isSecondPurchased ? secondImprovementBoost : 0;
-            return level * baseIncome * (1 + firstImprovementBoost/100 + secondImprovementBoost/100);
+            var incomeMultiplier = 1f;
+            foreach (var improvement in businessModel.Improvements)
+            {
+                incomeMultiplier += improvement.IsPurchased ? improvement.IncomeMultiplier/100 : 0;
+            }
+            return businessModel.CurrentLevel * businessModel.BaseIncome *incomeMultiplier;
         }
     }
 }

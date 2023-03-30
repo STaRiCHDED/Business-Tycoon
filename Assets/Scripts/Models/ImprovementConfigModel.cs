@@ -8,9 +8,9 @@ namespace Models
     {
         public string Name => _name;
    
-        public int IncomeMultiplier => _incomeMultiplier;
+        public float IncomeMultiplier => _incomeMultiplier;
 
-        public int Price => _price;
+        public float Price => _price;
 
         public bool IsPurchased => _isPurchased;
    
@@ -18,10 +18,10 @@ namespace Models
         private string _name;
    
         [SerializeField]
-        private int _incomeMultiplier;
+        private float _incomeMultiplier;
 
         [SerializeField]
-        private int _price;
+        private float _price;
 
         [SerializeField]
         private bool _isPurchased;

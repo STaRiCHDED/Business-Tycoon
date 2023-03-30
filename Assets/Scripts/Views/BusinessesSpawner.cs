@@ -1,7 +1,8 @@
-﻿using Models;
+﻿using Controllers;
+using Models;
 using UnityEngine;
 
-namespace Controllers
+namespace Views
 {
     public class BusinessesSpawner : MonoBehaviour
     {
@@ -13,18 +14,13 @@ namespace Controllers
     
         [SerializeField]
         private RectTransform _spawnRoot;
-
-        private void Start()
-        {
-            Spawn();
-        }
-
-        private void Spawn()
+        
+        public void Spawn()
         {
             foreach (var businessModel in _businessesConfig.Businesses)
             {
-                var business = Instantiate(_businessPrefab, _spawnRoot);
-                business.Initialize(businessModel);
+                var businessController = Instantiate(_businessPrefab, _spawnRoot);
+                businessController.Initialize(businessModel);
             }
         }
     }

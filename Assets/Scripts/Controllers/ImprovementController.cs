@@ -8,30 +8,35 @@ namespace Controllers
 {
     public class ImprovementController : MonoBehaviour
     {
+        public event Action ImprovementPurchased;
+        
+        [SerializeField]
         private ImprovementView _improvementView;
+        
         private ImprovementModel _improvementModel;
         
-        public void Initialize(ImprovementConfigModel improvementConfigModel)
+        public void Initialize(ImprovementModel improvementModel)
         {
-            _improvementView = GetComponent<ImprovementView>();
-            _improvementModel = new ImprovementModel(improvementConfigModel);
+            _improvementModel = improvementModel;
             _improvementView.SetClickCallBack(BuyImprovement);
-            _improvementView.Show(_improvementModel);
+            UpdateView();
         }
 
         private void BuyImprovement()
-        { 
-            var improvementPrice = _improvementModel.Price;
-            var balanceService= ServiceLocator.Instance.GetSingle<IBalanceService>();
-            var configService = ServiceLocator.Instance.GetSingle<IConfigService>();
-            
-            if (balanceService.HasEnoughMoney(improvementPrice))
+        {
+            var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+            if (balanceService.HasEnoughMoney(_improvementModel.Price))
             {
-               _improvementModel.ChangeState(true);
-               balanceService.Pay(improvementPrice);
-              
-               _improvementView.Show(_improvementModel);
+                balanceService.Pay(_improvementModel.Price);
+                _improvementModel.IsPurchased = true;
+                ImprovementPurchased?.Invoke();
+                UpdateView();
             }
+        }
+
+        private void UpdateView()
+        {
+            _improvementView.Show(_improvementModel);
         }
     }
 }

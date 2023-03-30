@@ -2,11 +2,11 @@
 
 namespace Services
 {
-     public interface IBalanceService : IService
-     {
-          event Action<float> BalanceChanged;
-          void Pay(int amount);
-          void Receive(int amount);
-          bool HasEnoughMoney(int amount);
-     }
+    public interface IBalanceService : IService
+    {
+        public event Action<float> BalanceChanged;
+        public void Pay(float amount);
+        public void Receive(float amount);
+        public bool HasEnoughMoney(float amount);
+    }
 }

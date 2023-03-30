@@ -10,13 +10,13 @@ namespace Models
     
         public string Name => _name;
    
-        public int Level => _level;
+        public float Level => _level;
    
-        public int Income => _income;
+        public float Income => _income;
 
-        public int IncomeDelay => _incomeDelay;
+        public float IncomeDelay => _incomeDelay;
 
-        public int UpgradePrice => _upgradePrice;
+        public float UpgradePrice => _upgradePrice;
 
         public IReadOnlyList<ImprovementConfigModel> Improvements => _improvements;
    
@@ -24,16 +24,16 @@ namespace Models
         private string _name;
    
         [SerializeField]
-        private int  _level;
+        private float  _level;
    
         [SerializeField]
-        private int _income;
+        private float _income;
 
         [SerializeField]
-        private int _incomeDelay;
+        private float _incomeDelay;
 
         [SerializeField]
-        private int _upgradePrice;
+        private float _upgradePrice;
 
         [SerializeField]
         private List<ImprovementConfigModel> _improvements;

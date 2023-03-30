@@ -17,55 +17,69 @@ MonoBehaviour:
     _level: 1
     _income: 3
     _incomeDelay: 3
-    _upgradePrice: 50
+    _upgradePrice: 3
     _improvements:
     - _name: Additional Employee
-      _incomeMultiplier: 0
+      _incomeMultiplier: 10
       _price: 50
       _isPurchased: 0
     - _name: ImprovedSupplies
-      _incomeMultiplier: 0
+      _incomeMultiplier: 15
       _price: 1000
       _isPurchased: 0
   - _name: Bank
     _level: 0
     _income: 40
     _incomeDelay: 6
-    _upgradePrice: 10
+    _upgradePrice: 40
     _improvements:
-    - _name: Up
-      _incomeMultiplier: 0
-      _price: 50
+    - _name: ' Advertising company'
+      _incomeMultiplier: 15
+      _price: 500
       _isPurchased: 0
-    - _name: Some
-      _incomeMultiplier: 0
-      _price: 50
+    - _name: New Subsidiary
+      _incomeMultiplier: 20
+      _price: 1000
       _isPurchased: 0
   - _name: GameDev Studio
     _level: 0
-    _income: 200
+    _income: 150
     _incomeDelay: 10
-    _upgradePrice: 15
+    _upgradePrice: 200
     _improvements:
     - _name: New Manager
-      _incomeMultiplier: 0
-      _price: 100
+      _incomeMultiplier: 10
+      _price: 2000
       _isPurchased: 0
     - _name: Better Pc's
-      _incomeMultiplier: 0
-      _price: 500
+      _incomeMultiplier: 10
+      _price: 5000
+      _isPurchased: 0
+  - _name: Software Company
+    _level: 0
+    _income: 500
+    _incomeDelay: 17
+    _upgradePrice: 500
+    _improvements:
+    - _name: AI Model Creation
+      _incomeMultiplier: 15
+      _price: 10000
+      _isPurchased: 0
+    - _name: New Software
+      _incomeMultiplier: 20
+      _price: 25000
       _isPurchased: 0
   - _name: Weapon Dealership
     _level: 0
-    _income: 10000
-    _incomeDelay: 360
-    _upgradePrice: 20
+    _income: 1000
+    _incomeDelay: 30
+    _upgradePrice: 1000
     _improvements:
     - _name: Better Weapons
-      _incomeMultiplier: 0
+      _incomeMultiplier: 20
       _price: 50000
       _isPurchased: 0
     - _name: Safe Place To Hide
-      _incomeMultiplier: 0
+      _incomeMultiplier: 30
       _price: 100000
       _isPurchased: 0

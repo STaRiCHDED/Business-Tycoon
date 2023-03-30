@@ -6,9 +6,11 @@ namespace Models
     [Serializable]
     public class PlayerBalanceModel
     {
-        public int Balance => _balance;
-    
-        [SerializeField]
-        private int _balance;
+        public float Balance { get; set; }
+
+        public PlayerBalanceModel(float balance = 0)
+        {
+            Balance = balance;
+        }
     }
 }

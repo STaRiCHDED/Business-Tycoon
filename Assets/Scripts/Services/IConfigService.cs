@@ -1,10 +1,10 @@
-﻿namespace Services
+﻿using Models;
+
+namespace Services
 {
     public interface IConfigService : IService
     {
-        int RecalculateUpgradePrice(int level, int basePrice);
-        int RecalculateIncome(int level, int baseIncome, 
-            bool isFirstPurchased, int firstImprovementBoost,
-            bool isSecondPurchased, int secondImprovementBoost);
+       public float RecalculateUpgradePrice(BusinessModel businessModel);
+       public float RecalculateIncome(BusinessModel businessModel);
     }
 }
