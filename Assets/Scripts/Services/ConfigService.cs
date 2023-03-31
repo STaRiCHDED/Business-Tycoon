@@ -1,9 +1,32 @@
-﻿using Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Models;
 
 namespace Services
 {
     public class ConfigService : IConfigService
-    {
+    { 
+        public IReadOnlyList<BusinessModel> BusinessModels => _businessModels;
+        
+        private readonly BusinessesConfig _businessesConfig;
+        private List<BusinessModel> _businessModels;
+
+        public ConfigService(BusinessesConfig businessesConfig)
+        {
+            _businessesConfig = businessesConfig;
+        }
+        
+        public IReadOnlyList<BusinessModel> CreateBusinessModels()
+        {
+            _businessModels = new List<BusinessModel>();
+            foreach (var configModel in _businessesConfig.Businesses)
+            {
+                _businessModels.Add(new BusinessModel(configModel));
+            }
+
+            return _businessModels;
+        }
+
         public float RecalculateUpgradePrice(BusinessModel businessModel)
         {
             return (businessModel.CurrentLevel + 1) * businessModel.BasePrice;

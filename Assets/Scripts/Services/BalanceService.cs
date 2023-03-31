@@ -5,6 +5,7 @@ namespace Services
 {
     public class BalanceService : IBalanceService
     {
+        public PlayerBalanceModel PlayerBalanceModel => _playerBalanceModel;
         public event Action<float> BalanceChanged;
         private readonly PlayerBalanceModel _playerBalanceModel;
         

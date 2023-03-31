@@ -22,9 +22,9 @@ namespace Controllers
         private IBalanceService _balanceService;
         private IConfigService _configService;
 
-        public void Initialize(BusinessConfigModel configModel)
+        public void Initialize(BusinessModel businessModel)
         {
-            _businessModel = new BusinessModel(configModel);
+            _businessModel = businessModel;
             _balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
             _configService = ServiceLocator.Instance.GetSingle<IConfigService>();
             

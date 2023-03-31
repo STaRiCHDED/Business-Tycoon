@@ -20,7 +20,7 @@ namespace Views
 
         private void ShowBalance(float balance)
         {
-            _balance.text = "BALANCE: " + balance + "$";
+            _balance.text = "BALANCE: " + Math.Round(balance,2) + "$";
         }
 
         private void OnDestroy()

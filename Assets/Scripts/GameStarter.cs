@@ -1,27 +1,38 @@
-﻿using Models;
+﻿using System;
+using Models;
 using Services;
 using UnityEngine;
 using Views;
 
 public class GameStarter : MonoBehaviour
 {
+    [SerializeField]
+    private BusinessesConfig _businessesConfig;
+    
     [SerializeField] 
     private BusinessesSpawner _businessesSpawner;
 
     private void Awake()
     {
-        RegisterServices();
-        _businessesSpawner.Spawn();
-    }
-
-    private void RegisterServices()
-    {
         var serviceLocator = ServiceLocator.Instance;
 
         serviceLocator.RegisterSingle<IFileService>(new FileService());
-        serviceLocator.RegisterSingle<IConfigService>(new ConfigService());
+        serviceLocator.RegisterSingle<IConfigService>(new ConfigService(_businessesConfig));
+        
+        var fileService = serviceLocator.GetSingle<IFileService>();
+        var saveData = fileService.Load();
+        var configService = serviceLocator.GetSingle<IConfigService>();
+        if (saveData==null)
+        {
+            var playerBalanceModel = new PlayerBalanceModel();
+            serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(playerBalanceModel));
+            _businessesSpawner.Spawn(configService.CreateBusinessModels());
 
-        var playerBalanceModel = new PlayerBalanceModel();
-        serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(playerBalanceModel));
+        }
+        else
+        {
+            serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(saveData.PlayerBalanceModel));
+            _businessesSpawner.Spawn(saveData.BusinessModels);
+        }
     }
 }

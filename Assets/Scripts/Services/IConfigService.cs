@@ -1,10 +1,12 @@
-﻿using Models;
+﻿using System.Collections.Generic;
+using Models;
 
 namespace Services
 {
     public interface IConfigService : IService
     {
-       public float RecalculateUpgradePrice(BusinessModel businessModel);
+        public IReadOnlyList<BusinessModel> CreateBusinessModels();
+        public float RecalculateUpgradePrice(BusinessModel businessModel);
        public float RecalculateIncome(BusinessModel businessModel);
     }
 }
