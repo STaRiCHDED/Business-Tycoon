@@ -16,24 +16,22 @@ namespace Models
         public float CurrentLevel { get; set; }
         public float CurrentIncome { get; set; } 
         public float CurrentUpgradePrice { get; set; }
-        public IReadOnlyList<ImprovementModel> Improvements => _improvements;
-        private readonly List<ImprovementModel> _improvements = new();
+        public List<ImprovementModel> Improvements { get; }
+        
 
-        public BusinessModel(BusinessConfigModel configModel)
+        public BusinessModel(string name, float basePrice, float baseIncome, float incomeDelay,
+            float level, float income, float price, List<ImprovementModel> improvements)
         {
-            Name = configModel.Name;
-            BasePrice = configModel.UpgradePrice;
-            BaseIncome = configModel.Income;
-            IncomeDelay = configModel.IncomeDelay;
+            Name = name;
+            BasePrice = basePrice;
+            BaseIncome = baseIncome;
+            IncomeDelay = incomeDelay;
 
-            CurrentLevel = configModel.Level;
-            CurrentIncome = configModel.Income;
-            CurrentUpgradePrice = configModel.UpgradePrice;
-            
-            foreach (var configModelImprovement in configModel.Improvements)
-            {
-                _improvements.Add(new ImprovementModel(configModelImprovement));
-            }
+            CurrentLevel = level;
+            CurrentIncome = income;
+            CurrentUpgradePrice = price;
+
+            Improvements = improvements;
         }
 
     }
