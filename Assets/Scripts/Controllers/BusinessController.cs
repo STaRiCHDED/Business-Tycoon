@@ -9,14 +9,11 @@ namespace Controllers
 {
     public class BusinessController : MonoBehaviour
     {
-        [SerializeField]
-        private BusinessView _businessView;
+        [SerializeField] private BusinessView _businessView;
 
-        [SerializeField]
-        private IncomeController _incomeController;
+        [SerializeField] private IncomeController _incomeController;
 
-        [SerializeField]
-        private ImprovementController[] _improvementControllers;
+        [SerializeField] private ImprovementController[] _improvementControllers;
 
         private BusinessModel _businessModel;
         private IBalanceService _balanceService;
@@ -27,7 +24,7 @@ namespace Controllers
             _businessModel = businessModel;
             _balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
             _configService = ServiceLocator.Instance.GetSingle<IConfigService>();
-            
+
             _incomeController.Initialize(_businessModel);
             InitializeImprovements();
 
@@ -35,7 +32,7 @@ namespace Controllers
 
             UpdateView();
         }
-        
+
         private void InitializeImprovements()
         {
             for (var i = 0; i < _improvementControllers.Length; i++)
@@ -49,7 +46,7 @@ namespace Controllers
 
         private void OnImprovementPurchased()
         {
-            _businessModel.CurrentIncome = _configService.RecalculateIncome(_businessModel);
+            UpdateModel(true);
             UpdateView();
         }
 
@@ -58,17 +55,24 @@ namespace Controllers
             if (_balanceService.HasEnoughMoney(_businessModel.CurrentUpgradePrice))
             {
                 _balanceService.Pay(_businessModel.CurrentUpgradePrice);
-                UpdateModel();
+                UpdateModel(false);
                 UpdateView();
             }
         }
-        
-        private void UpdateModel()
+
+        private void UpdateModel(bool isImprovement)
         {
+            if (isImprovement)
+            {
+                _businessModel.CurrentIncome = _configService.RecalculateIncome(_businessModel);
+                return;
+            }
+
             _businessModel.CurrentLevel++;
-            _businessModel.CurrentUpgradePrice = _configService.RecalculateUpgradePrice(_businessModel);
+            _businessModel.CurrentUpgradePrice = _configService.RecalculateUpgradeLevelPrice(_businessModel);
             _businessModel.CurrentIncome = _configService.RecalculateIncome(_businessModel);
         }
+
 
         private void UpdateView()
         {

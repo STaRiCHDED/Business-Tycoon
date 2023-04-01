@@ -5,15 +5,14 @@ namespace Services
 {
     public class BalanceService : IBalanceService
     {
-        public PlayerBalanceModel PlayerBalanceModel => _playerBalanceModel;
         public event Action<float> BalanceChanged;
         private readonly PlayerBalanceModel _playerBalanceModel;
-        
+
         public BalanceService(PlayerBalanceModel playerBalanceModel)
         {
             _playerBalanceModel = playerBalanceModel;
         }
-        
+
         public void Pay(float amount)
         {
             _playerBalanceModel.Balance -= amount;

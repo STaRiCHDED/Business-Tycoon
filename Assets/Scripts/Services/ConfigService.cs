@@ -5,9 +5,7 @@ using Models;
 namespace Services
 {
     public class ConfigService : IConfigService
-    { 
-        public IReadOnlyList<BusinessModel> BusinessModels => _businessModels;
-        
+    {
         private readonly BusinessesConfig _businessesConfig;
         private List<BusinessModel> _businessModels;
 
@@ -15,7 +13,7 @@ namespace Services
         {
             _businessesConfig = businessesConfig;
         }
-        
+
         public IReadOnlyList<BusinessModel> CreateBusinessModels()
         {
             _businessModels = new List<BusinessModel>();
@@ -27,7 +25,7 @@ namespace Services
             return _businessModels;
         }
 
-        public float RecalculateUpgradePrice(BusinessModel businessModel)
+        public float RecalculateUpgradeLevelPrice(BusinessModel businessModel)
         {
             return (businessModel.CurrentLevel + 1) * businessModel.BasePrice;
         }
@@ -37,9 +35,10 @@ namespace Services
             var incomeMultiplier = 1f;
             foreach (var improvement in businessModel.Improvements)
             {
-                incomeMultiplier += improvement.IsPurchased ? improvement.IncomeMultiplier/100 : 0;
+                incomeMultiplier += improvement.IsPurchased ? improvement.IncomeMultiplier / 100 : 0;
             }
-            return businessModel.CurrentLevel * businessModel.BaseIncome *incomeMultiplier;
+
+            return businessModel.CurrentLevel * businessModel.BaseIncome * incomeMultiplier;
         }
     }
 }
