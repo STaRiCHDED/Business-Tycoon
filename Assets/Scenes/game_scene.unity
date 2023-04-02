@@ -137,13 +137,14 @@ GameObject:
   - component: {fileID: 139701310}
   - component: {fileID: 139701315}
   - component: {fileID: 139701314}
+  - component: {fileID: 139701316}
   m_Layer: 5
   m_Name: GameScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &139701310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +267,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139701309}
   m_CullTransparentMesh: 1
+--- !u!225 &139701316
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139701309}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &162832975
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +874,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000005722046, y: 17.259888}
   m_SizeDelta: {x: 0.000015259, y: -15.0643}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -939,7 +952,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000084877014}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 15}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1455882960
 MonoBehaviour:
@@ -1454,13 +1467,14 @@ GameObject:
   - component: {fileID: 2241826702623829042}
   - component: {fileID: 2241826702623829049}
   - component: {fileID: 2241826702623829046}
+  - component: {fileID: 2241826702623829050}
   m_Layer: 5
   m_Name: StartScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!223 &2241826702623829044
 Canvas:
   m_ObjectHideFlags: 0
@@ -1568,6 +1582,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2241826702623829043}
   m_CullTransparentMesh: 1
+--- !u!225 &2241826702623829050
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241826702623829043}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2241826702708230950
 GameObject:
   m_ObjectHideFlags: 0
