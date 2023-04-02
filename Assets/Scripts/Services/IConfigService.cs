@@ -7,8 +7,6 @@ namespace Services
     {
         public PlayerBalanceModel CreatePlayerBalanceModel(float balance);
         public List<BusinessModel> GetBusinessModels(List<BusinessModel> businessModels = null);
-
-        public float RecalculateUpgradeLevelPrice(BusinessModel businessModel);
-       public float RecalculateIncome(BusinessModel businessModel);
+        
     }
 }
