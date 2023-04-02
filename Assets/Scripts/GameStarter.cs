@@ -8,43 +8,35 @@ using Views;
 public class GameStarter : MonoBehaviour
 {
     [SerializeField]
-    private BusinessesConfig _businessesConfig;
-
+    private GameScreen _gameScreen;
+    
+    [SerializeField]
+    private StartScreen _startScreen;
+    
     [SerializeField]
     private BusinessesSpawner _businessesSpawner;
-
-    private IFileService _fileService;
-    private SaveDataModel _saveDataModel;
-
+    
     private StateMachine _stateMachine;
     private void Awake()
     {
-        var serviceLocator = ServiceLocator.Instance;
+        var initializationState = new InitializationState();
+        var serviceLocator = initializationState.RegisterServices();
 
-        serviceLocator.RegisterSingle<IConfigService>(new ConfigService(_businessesConfig));
-
-        var configService = serviceLocator.GetSingle<IConfigService>();
-        serviceLocator.RegisterSingle<IFileService>(new FileService(configService));
-
-        _fileService = serviceLocator.GetSingle<IFileService>();
-        _saveDataModel = _fileService.Load();
+        var fileService = serviceLocator.GetSingle<IFileService>();
         
-        serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(_saveDataModel.PlayerBalanceModel));
+        var saveDataModel = fileService.Load();
+        serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(saveDataModel.PlayerBalanceModel));
         
-        _businessesSpawner.Spawn(_saveDataModel.BusinessModels);
-
-        var startState = new StartState();
-        var gameState = new GameState();
-        _stateMachine = new StateMachine(startState, gameState);
+        
+        var startState = new StartState(_startScreen,saveDataModel);
+        var gameState = new GameState(_businessesSpawner, saveDataModel,_gameScreen);
+        _stateMachine = new StateMachine(initializationState,startState, gameState);
         _stateMachine.Initialize();
-        _stateMachine.Enter<StartState>();
+        _stateMachine.Enter<InitializationState>();
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _fileService.Save(_saveDataModel);
-        }
+        ServiceLocator.Instance.Dispose();
     }
 }

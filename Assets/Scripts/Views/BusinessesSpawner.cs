@@ -7,7 +7,6 @@ namespace Views
 {
     public class BusinessesSpawner : MonoBehaviour
     {
-        
         [SerializeField]
         private BusinessController _businessPrefab;
     
