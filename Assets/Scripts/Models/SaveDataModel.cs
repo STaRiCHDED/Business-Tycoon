@@ -7,9 +7,9 @@ namespace Models
     public class SaveDataModel
     {
         public PlayerBalanceModel PlayerBalanceModel { get; }
-        public List<BusinessModel> BusinessModels { get; private set; }
+        public IReadOnlyList<BusinessModel> BusinessModels;
 
-        public SaveDataModel(PlayerBalanceModel playerBalanceModel, List<BusinessModel> businessModels)
+        public SaveDataModel(PlayerBalanceModel playerBalanceModel, IReadOnlyList<BusinessModel> businessModels)
         {
             PlayerBalanceModel = playerBalanceModel;
             BusinessModels = businessModels;

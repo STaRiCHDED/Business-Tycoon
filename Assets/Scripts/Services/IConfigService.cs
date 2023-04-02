@@ -5,9 +5,7 @@ namespace Services
 {
     public interface IConfigService : IService
     {
-        public PlayerBalanceModel CreatePlayerBalanceModel(float balance);
-        public List<BusinessModel> GetBusinessModels(List<BusinessModel> businessModels = null);
-
+        public IReadOnlyList<BusinessModel> CreateBusinessModels();
         public float RecalculateUpgradeLevelPrice(BusinessModel businessModel);
        public float RecalculateIncome(BusinessModel businessModel);
     }

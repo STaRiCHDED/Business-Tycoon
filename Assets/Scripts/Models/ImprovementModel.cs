@@ -10,12 +10,12 @@ namespace Models
         public float Price { get; }
         public bool IsPurchased { get; set; }
 
-        public ImprovementModel(string name, float incomeMultiplier, float price, bool isPurchased)
+        public ImprovementModel(ImprovementConfigModel configModel)
         {
-            Name = name;
-            IncomeMultiplier = incomeMultiplier;
-            Price = price;
-            IsPurchased = isPurchased;
+            Name = configModel.Name;
+            IncomeMultiplier = configModel.IncomeMultiplier;
+            Price = configModel.Price;
+            IsPurchased = configModel.IsPurchased;
         }
     }
 }

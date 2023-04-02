@@ -8,37 +8,31 @@ public class GameStarter : MonoBehaviour
 {
     [SerializeField]
     private BusinessesConfig _businessesConfig;
-
-    [SerializeField]
+    
+    [SerializeField] 
     private BusinessesSpawner _businessesSpawner;
-
-    private IFileService _fileService;
-    private SaveDataModel _saveDataModel;
 
     private void Awake()
     {
         var serviceLocator = ServiceLocator.Instance;
 
+        serviceLocator.RegisterSingle<IFileService>(new FileService());
         serviceLocator.RegisterSingle<IConfigService>(new ConfigService(_businessesConfig));
-
+        
+        var fileService = serviceLocator.GetSingle<IFileService>();
+        var saveData = fileService.Load();
         var configService = serviceLocator.GetSingle<IConfigService>();
-        serviceLocator.RegisterSingle<IFileService>(new FileService(configService));
-
-        _fileService = serviceLocator.GetSingle<IFileService>();
-        _saveDataModel = _fileService.Load();
-        
-        serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(_saveDataModel.PlayerBalanceModel));
-        
-        _businessesSpawner.Spawn(_saveDataModel.BusinessModels);
-        
-        
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (saveData==null)
         {
-            _fileService.Save(_saveDataModel);
+            var playerBalanceModel = new PlayerBalanceModel();
+            serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(playerBalanceModel));
+            _businessesSpawner.Spawn(configService.CreateBusinessModels());
+
+        }
+        else
+        {
+            serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(saveData.PlayerBalanceModel));
+            _businessesSpawner.Spawn(saveData.BusinessModels);
         }
     }
 }

@@ -16,7 +16,6 @@ namespace Views
         {
             _balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
             _balanceService.BalanceChanged += ShowBalance;
-            ShowBalance(_balanceService.Balance);
         }
 
         private void ShowBalance(float balance)
