@@ -10,11 +10,13 @@ namespace Services
         private const string _fileName = "/Saves.json";
         private readonly string _filePath;
         private readonly JsonSerializer _jsonSerializer;
+        private readonly IConfigService _configService;
 
-        public FileService()
+        public FileService(IConfigService configService)
         {
-            _filePath = Application.persistentDataPath + _fileName;
-            _jsonSerializer = new JsonSerializer();
+             _configService = configService;
+             _filePath = Application.persistentDataPath + _fileName;
+             _jsonSerializer = new JsonSerializer();
         }
         
         public void Save(SaveDataModel saveDataModel)
@@ -31,10 +33,18 @@ namespace Services
                 using var streamReader = new StreamReader(_filePath);
                 using JsonReader jsonReader = new JsonTextReader(streamReader);
                 var saveDataModel = _jsonSerializer.Deserialize<SaveDataModel>(jsonReader);
-                return saveDataModel;
+                if (saveDataModel!=null)
+                {
+                    var playerBalanceModel = _configService.CreatePlayerBalanceModel(saveDataModel.PlayerBalanceModel.Balance);
+                    var businessModels = _configService.GetBusinessModels(saveDataModel.BusinessModels);
+                    var saveData = new SaveDataModel(playerBalanceModel, businessModels);
+                    return saveData;
+                }
             }
-            
-            return null;
+
+            var initialData = new SaveDataModel(_configService.CreatePlayerBalanceModel(0),
+                _configService.GetBusinessModels());
+            return initialData;
         }
 
         public void Delete()
