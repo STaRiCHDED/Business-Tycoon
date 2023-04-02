@@ -1,8 +1,6 @@
-﻿using System;
-using Models;
+﻿using Models;
 using Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Views;
 
 namespace Controllers
@@ -16,14 +14,10 @@ namespace Controllers
         [SerializeField] private ImprovementController[] _improvementControllers;
 
         private BusinessModel _businessModel;
-        private IBalanceService _balanceService;
-        private IConfigService _configService;
-
+        
         public void Initialize(BusinessModel businessModel)
         {
             _businessModel = businessModel;
-            _balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
-            _configService = ServiceLocator.Instance.GetSingle<IConfigService>();
 
             _incomeController.Initialize(_businessModel);
             InitializeImprovements();
@@ -52,9 +46,11 @@ namespace Controllers
 
         private void UpgradeLevel()
         {
-            if (_balanceService.HasEnoughMoney(_businessModel.CurrentUpgradePrice))
+            var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+            
+            if (balanceService.HasEnoughMoney(_businessModel.CurrentUpgradePrice))
             {
-                _balanceService.Pay(_businessModel.CurrentUpgradePrice);
+                balanceService.Pay(_businessModel.CurrentUpgradePrice);
                 UpdateModel(false);
                 UpdateView();
             }
@@ -62,18 +58,19 @@ namespace Controllers
 
         private void UpdateModel(bool isImprovement)
         {
+            var recalculationService = ServiceLocator.Instance.GetSingle<IRecalculationService>();
+            
             if (isImprovement)
             {
-                _businessModel.CurrentIncome = _configService.RecalculateIncome(_businessModel);
+                _businessModel.CurrentIncome = recalculationService.RecalculateIncome(_businessModel);
                 return;
             }
 
             _businessModel.CurrentLevel++;
-            _businessModel.CurrentUpgradePrice = _configService.RecalculateUpgradeLevelPrice(_businessModel);
-            _businessModel.CurrentIncome = _configService.RecalculateIncome(_businessModel);
+            _businessModel.CurrentUpgradePrice = recalculationService.RecalculateUpgradeLevelPrice(_businessModel);
+            _businessModel.CurrentIncome = recalculationService.RecalculateIncome(_businessModel);
         }
-
-
+        
         private void UpdateView()
         {
             _businessView.Show(_businessModel);
