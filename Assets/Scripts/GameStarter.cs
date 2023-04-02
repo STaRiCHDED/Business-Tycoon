@@ -1,4 +1,5 @@
 ﻿using System;
+using IngameStateMachine;
 using Models;
 using Services;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class GameStarter : MonoBehaviour
     private IFileService _fileService;
     private SaveDataModel _saveDataModel;
 
+    private StateMachine _stateMachine;
     private void Awake()
     {
         var serviceLocator = ServiceLocator.Instance;
@@ -30,8 +32,12 @@ public class GameStarter : MonoBehaviour
         serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(_saveDataModel.PlayerBalanceModel));
         
         _businessesSpawner.Spawn(_saveDataModel.BusinessModels);
-        
-        
+
+        var startState = new StartState();
+        var gameState = new GameState();
+        _stateMachine = new StateMachine(startState, gameState);
+        _stateMachine.Initialize();
+        _stateMachine.Enter<StartState>();
     }
 
     private void Update()
