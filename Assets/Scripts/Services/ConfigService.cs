@@ -5,6 +5,7 @@ namespace Services
 {
     public class ConfigService : IConfigService
     {
+        public List<BusinessModel> BusinessModels => _businessModels;
         private readonly BusinessesConfig _businessesConfig;
         private List<BusinessModel> _businessModels;
 
