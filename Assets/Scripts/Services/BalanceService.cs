@@ -5,30 +5,36 @@ namespace Services
 {
     public class BalanceService : IBalanceService
     {
-        public float Balance => _playerBalanceModel.Balance;
+        public PlayerBalanceModel PlayerBalanceModel { get; set; }
+
         public event Action<float> BalanceChanged;
-        private readonly PlayerBalanceModel _playerBalanceModel;
 
         public BalanceService(PlayerBalanceModel playerBalanceModel)
         {
-            _playerBalanceModel = playerBalanceModel;
+            PlayerBalanceModel = playerBalanceModel;
         }
 
         public void Pay(float amount)
         {
-            _playerBalanceModel.Balance -= amount;
-            BalanceChanged?.Invoke(_playerBalanceModel.Balance);
+            PlayerBalanceModel.Balance -= amount;
+            BalanceChanged?.Invoke(PlayerBalanceModel.Balance);
         }
 
         public void Receive(float amount)
         {
-            _playerBalanceModel.Balance += amount;
-            BalanceChanged?.Invoke(_playerBalanceModel.Balance);
+            PlayerBalanceModel.Balance += amount;
+            BalanceChanged?.Invoke(PlayerBalanceModel.Balance);
         }
 
         public bool HasEnoughMoney(float amount)
         {
-            return _playerBalanceModel.Balance >= amount;
+            return PlayerBalanceModel.Balance >= amount;
+        }
+
+        public void ResetBalance()
+        {
+            PlayerBalanceModel.Balance = 0;
+            BalanceChanged?.Invoke(PlayerBalanceModel.Balance);
         }
     }
 }
