@@ -1,48 +1,41 @@
-using System;
-using System.Runtime.Serialization.Formatters;
+﻿using System;
 using Events;
 using IngameStateMachine;
-using Models;
 using Services;
 using Views;
 
 public class GameState : IState
 {
-    private readonly BusinessesSpawner _businessesSpawner;
-    private SaveDataModel _saveDataModel;
     private readonly GameScreen _gameScreen;
+    private readonly BusinessesSpawner _businessesSpawner;
+    private StateMachine _stateMachine;
     private IDisposable _subscription;
 
-    private StateMachine _stateMachine;
-
+    public GameState(GameScreen gameScreen, BusinessesSpawner businessesSpawner)
+    {
+        _gameScreen = gameScreen;
+        _businessesSpawner = businessesSpawner;
+    }
+    
     public void Initialize(StateMachine stateMachine)
     {
         _stateMachine = stateMachine;
     }
 
-    public GameState(BusinessesSpawner businessesSpawner, SaveDataModel saveDataModel, GameScreen gameScreen)
-    {
-        _businessesSpawner = businessesSpawner;
-        _saveDataModel = saveDataModel;
-        _gameScreen = gameScreen;
-    }
-
     public void OnEnter()
     {
+        StartGame();
         _gameScreen.Show();
-        _saveDataModel = ServiceLocator.Instance.GetSingle<IFileService>().Load();
-        _businessesSpawner.Spawn(_saveDataModel.BusinessModels);
-
         _subscription = EventStreams.Game.Subscribe<ExitToMainMenuEvent>(OnExitToMainMenu);
     }
-
     
     public void OnExit()
     {
+        _businessesSpawner.DeleteControllers();
         _gameScreen.Hide();
-        
+        Dispose();
     }
-
+    
     public void Dispose()
     {
         _subscription?.Dispose();
@@ -51,8 +44,32 @@ public class GameState : IState
     private void OnExitToMainMenu(ExitToMainMenuEvent obj)
     {
         var fileService = ServiceLocator.Instance.GetSingle<IFileService>();
-        fileService.Save(_saveDataModel);
+        var gameDataProvider = ServiceLocator.Instance.GetSingle<IGameDataProvider>();
+
+        var saveData = gameDataProvider.GetCurrentData();
+        fileService.Save(saveData);
+        
         _stateMachine.Enter<StartState>();
     }
+    
+    private void StartGame()
+    {
+        var fileService = ServiceLocator.Instance.GetSingle<IFileService>();
+        var configService = ServiceLocator.Instance.GetSingle<IConfigService>();
+        var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
 
+        var saveDataModel = fileService.Load();
+        if (saveDataModel != null)
+        {
+            var businessModels = configService.GetBusinessModels(saveDataModel.BusinessModels);
+            balanceService.PlayerBalanceModel = saveDataModel.PlayerBalanceModel;
+            _businessesSpawner.Spawn(businessModels);
+        }
+        else
+        {
+            var businessModels = configService.GetBusinessModels();
+            balanceService.PlayerBalanceModel = configService.CreatePlayerBalanceModel(0);
+            _businessesSpawner.Spawn(businessModels);
+        }
+    }
 }

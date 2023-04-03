@@ -1,6 +1,6 @@
+﻿using System;
 using Events;
 using IngameStateMachine;
-using Models;
 using Services;
 using SimpleEventBus.Disposables;
 using UnityEditor;
@@ -9,59 +9,66 @@ using Views;
 public class StartState : IState
 {
     private readonly StartScreen _startScreen;
-    private readonly SaveDataModel _saveDataModel;
-    private CompositeDisposable _subscriptions;
     private StateMachine _stateMachine;
-    
+
+    private CompositeDisposable _subscription;
+
+    public StartState(StartScreen startScreen)
+    {
+        _startScreen = startScreen;
+    }
+
     public void Initialize(StateMachine stateMachine)
     {
         _stateMachine = stateMachine;
     }
 
-    public StartState(StartScreen startScreen, SaveDataModel saveDataModel)
-    {
-        _startScreen = startScreen;
-        _saveDataModel = saveDataModel;
-    }
-
     public void OnEnter()
     {
         _startScreen.Show();
-        _subscriptions = new CompositeDisposable
+        _subscription = new CompositeDisposable
         {
+            EventStreams.Game.Subscribe<ExitGameEvent>(OnExitGame),
             EventStreams.Game.Subscribe<StartNewGameEvent>(OnStartNewGame),
             EventStreams.Game.Subscribe<ContinueGameEvent>(OnContinueGame),
-            EventStreams.Game.Subscribe<ExitGameEvent>(OnExitGame)
         };
-
+    }
+    
+    public void OnExit()
+    {
+        _startScreen.Hide();
+        Dispose();
     }
 
-    private void OnExitGame(ExitGameEvent obj)
+    public void Dispose()
     {
-        ServiceLocator.Instance.GetSingle<IFileService>().Save(_saveDataModel);
-        EditorApplication.isPlaying = false;
-    }
-
-    private void OnContinueGame(ContinueGameEvent obj)
-    {
-        _stateMachine.Enter<GameState>();
+        _subscription?.Dispose();
     }
 
     private void OnStartNewGame(StartNewGameEvent obj)
     {
         var fileService = ServiceLocator.Instance.GetSingle<IFileService>();
+        var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+        
+        balanceService.ResetBalance();
         fileService.Delete();
         _stateMachine.Enter<GameState>();
     }
-
-    public void OnExit()
-    {
-        _startScreen.Hide();
-    }
     
-    public void Dispose()
+    private void OnContinueGame(ContinueGameEvent obj)
     {
-        _subscriptions?.Dispose();
+        _stateMachine.Enter<GameState>();
     }
 
+    
+    private void OnExitGame(ExitGameEvent obj)
+    {
+        var fileService = ServiceLocator.Instance.GetSingle<IFileService>();
+        var gameDataProvider = ServiceLocator.Instance.GetSingle<IGameDataProvider>();
+
+        var saveData = gameDataProvider.GetCurrentData();
+        fileService.Save(saveData);
+
+        EditorApplication.isPlaying = false;
+    }
 }
