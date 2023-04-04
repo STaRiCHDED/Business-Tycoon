@@ -8,10 +8,12 @@ public class IncomeController : MonoBehaviour
     [SerializeField] private Slider _slider;
 
     private BusinessModel _businessModel;
+    private float _currentBusinessLevel;
 
     public void Initialize(BusinessModel businessModel)
     {
         _businessModel = businessModel;
+        _currentBusinessLevel = _businessModel.CurrentLevel;
     }
 
     private void Update()
@@ -26,6 +28,11 @@ public class IncomeController : MonoBehaviour
     {
         _slider.value += Time.deltaTime / _businessModel.IncomeDelay;
 
+        if (_currentBusinessLevel < _businessModel.CurrentLevel)
+        {
+            _slider.value = _slider.minValue;
+            _currentBusinessLevel = _businessModel.CurrentLevel;
+        }
         if (_slider.value >= _slider.maxValue)
         {
             _slider.value = _slider.minValue;
