@@ -7,14 +7,17 @@ namespace Controllers
 {
     public class BusinessController : MonoBehaviour
     {
-        [SerializeField] private BusinessView _businessView;
+        [SerializeField]
+        private BusinessView _businessView;
 
-        [SerializeField] private IncomeController _incomeController;
+        [SerializeField]
+        private IncomeController _incomeController;
 
-        [SerializeField] private ImprovementController[] _improvementControllers;
+        [SerializeField]
+        private ImprovementController[] _improvementControllers;
 
         private BusinessModel _businessModel;
-        
+
         public void Initialize(BusinessModel businessModel)
         {
             _businessModel = businessModel;
@@ -40,6 +43,7 @@ namespace Controllers
 
         private void OnImprovementPurchased()
         {
+            _incomeController.ResetProgressBar();
             UpdateModel(true);
             UpdateView();
         }
@@ -47,10 +51,11 @@ namespace Controllers
         private void UpgradeLevel()
         {
             var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
-            
+
             if (balanceService.HasEnoughMoney(_businessModel.CurrentUpgradePrice))
             {
                 balanceService.Pay(_businessModel.CurrentUpgradePrice);
+                _incomeController.ResetProgressBar();
                 UpdateModel(false);
                 UpdateView();
             }
@@ -59,7 +64,7 @@ namespace Controllers
         private void UpdateModel(bool isImprovement)
         {
             var recalculationService = ServiceLocator.Instance.GetSingle<IRecalculationService>();
-            
+
             if (isImprovement)
             {
                 _businessModel.CurrentIncome = recalculationService.RecalculateIncome(_businessModel);
@@ -70,7 +75,7 @@ namespace Controllers
             _businessModel.CurrentUpgradePrice = recalculationService.RecalculateUpgradeLevelPrice(_businessModel);
             _businessModel.CurrentIncome = recalculationService.RecalculateIncome(_businessModel);
         }
-        
+
         private void UpdateView()
         {
             _businessView.Show(_businessModel);

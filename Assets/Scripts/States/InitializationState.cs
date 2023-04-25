@@ -2,48 +2,49 @@
 using Models;
 using Services;
 
-public class InitializationState : IState
+namespace States
 {
-    private StateMachine _stateMachine;
-   
-
-    public void Initialize(StateMachine stateMachine)
+    public class InitializationState : IState
     {
-        _stateMachine = stateMachine;
-    }
+        private StateMachine _stateMachine;
 
-    public void RegisterServices()
-    {
-        var serviceLocator = ServiceLocator.Instance;
+        public void Initialize(StateMachine stateMachine)
+        {
+            _stateMachine = stateMachine;
+        }
 
-        serviceLocator.RegisterSingle<IAssetProvider>(new AssetProvider());
-        var assetProvider = serviceLocator.GetSingle<IAssetProvider>();
+        public void RegisterServices()
+        {
+            var serviceLocator = ServiceLocator.Instance;
 
-        var config = assetProvider.Load<BusinessesConfig>(ResourcesNames.CONFIG);
-        serviceLocator.RegisterSingle<IConfigService>(new ConfigService(config));
-        
-        serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(new PlayerBalanceModel(0)));
+            serviceLocator.RegisterSingle<IAssetProvider>(new AssetProvider());
+            var assetProvider = serviceLocator.GetSingle<IAssetProvider>();
 
-        var configService = serviceLocator.GetSingle<IConfigService>();
-        var balanceService = serviceLocator.GetSingle<IBalanceService>();
-        
-        serviceLocator.RegisterSingle<IGameDataProvider>(new GameDataProvider(configService,balanceService));
-        
-        serviceLocator.RegisterSingle<IFileService>(new FileService());
-        serviceLocator.RegisterSingle<IRecalculationService>(new RecalculationService());
-       
-    }
+            var config = assetProvider.Load<BusinessesConfig>(ResourcesNames.CONFIG);
+            serviceLocator.RegisterSingle<IConfigService>(new ConfigService(config));
 
-    public void OnEnter()
-    {
-        _stateMachine.Enter<StartState>();
-    }
+            serviceLocator.RegisterSingle<IBalanceService>(new BalanceService(new PlayerBalanceModel(0)));
 
-    public void OnExit()
-    {
-    }
-    
-    public void Dispose()
-    {
+            var configService = serviceLocator.GetSingle<IConfigService>();
+            var balanceService = serviceLocator.GetSingle<IBalanceService>();
+
+            serviceLocator.RegisterSingle<IGameDataProvider>(new GameDataProvider(configService, balanceService));
+
+            serviceLocator.RegisterSingle<IFileService>(new FileService());
+            serviceLocator.RegisterSingle<IRecalculationService>(new RecalculationService());
+        }
+
+        public void OnEnter()
+        {
+            _stateMachine.Enter<StartState>();
+        }
+
+        public void OnExit()
+        {
+        }
+
+        public void Dispose()
+        {
+        }
     }
 }

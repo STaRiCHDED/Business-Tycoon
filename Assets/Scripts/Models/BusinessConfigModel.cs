@@ -7,7 +7,6 @@ namespace Models
     [Serializable]
     public class BusinessConfigModel
     {
-    
         public string Name => _name;
    
         public float Level => _level;
@@ -37,6 +36,5 @@ namespace Models
 
         [SerializeField]
         private List<ImprovementConfigModel> _improvements;
-        
     }
 }

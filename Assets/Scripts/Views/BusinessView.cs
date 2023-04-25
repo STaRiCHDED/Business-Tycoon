@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Controllers;
-using JetBrains.Annotations;
 using Models;
 using TMPro;
 using UnityEngine;
@@ -12,18 +9,18 @@ namespace Views
     {
         [SerializeField]
         private TextMeshProUGUI _nameLabel;
-    
+
         [SerializeField]
         private TextMeshProUGUI _levelLabel;
-    
+
         [SerializeField]
         private TextMeshProUGUI _incomeLabel;
 
-        [SerializeField] 
+        [SerializeField]
         private TextMeshProUGUI _upgradePriceLabel;
-        
+
         private Action _onClicked;
-        
+
         public void Show(BusinessModel businessModel)
         {
             _nameLabel.text = businessModel.Name;
@@ -31,7 +28,7 @@ namespace Views
             _incomeLabel.text = $"Income\n {businessModel.CurrentIncome.ToString()}";
             _upgradePriceLabel.text = "LVL UP\nPrice " + businessModel.CurrentUpgradePrice;
         }
-        
+
         public void Click()
         {
             _onClicked?.Invoke();

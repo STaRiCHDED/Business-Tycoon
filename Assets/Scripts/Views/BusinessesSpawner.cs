@@ -13,7 +13,7 @@ namespace Views
         [SerializeField]
         private RectTransform _spawnRoot;
 
-        private List<BusinessController> _controllers = new();
+        private readonly List<BusinessController> _controllers = new();
 
         public void Spawn(IReadOnlyList<BusinessModel> businessModels)
         {
@@ -36,6 +36,7 @@ namespace Views
             {
                 Destroy(businessController.gameObject);
             }
+
             _controllers.Clear();
         }
     }

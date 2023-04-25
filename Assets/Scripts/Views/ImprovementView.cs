@@ -11,37 +11,37 @@ namespace Views
     {
         [SerializeField]
         private TextMeshProUGUI _nameLabel;
-    
+
         [SerializeField]
         private TextMeshProUGUI _additionalPercentageIncomeLabel;
-    
+
         [SerializeField]
         private TextMeshProUGUI _stateLabel;
 
-        [SerializeField] 
+        [SerializeField]
         private Button _buyButton;
-        
+
         private string _purchased = "Purchased";
 
         private Action _onClicked;
-        
+
         public void Click()
         {
             _onClicked?.Invoke();
         }
-        
+
         public void SetClickCallBack(Action onClicked)
         {
             _onClicked = onClicked;
         }
-        
+
         public void Show(ImprovementModel improvementModel)
         {
             _nameLabel.text = improvementModel.Name;
             _additionalPercentageIncomeLabel.text = "Income +" + improvementModel.IncomeMultiplier + "%";
             _stateLabel.text = CheckPurchaseState(improvementModel);
-
         }
+
         private string CheckPurchaseState(ImprovementModel improvementModel)
         {
             if (improvementModel.IsPurchased)
@@ -52,6 +52,5 @@ namespace Views
 
             return "Price " + improvementModel.Price + "$";
         }
-        
     }
 }

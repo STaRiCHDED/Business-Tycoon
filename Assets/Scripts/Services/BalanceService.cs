@@ -6,7 +6,6 @@ namespace Services
     public class BalanceService : IBalanceService
     {
         public PlayerBalanceModel PlayerBalanceModel { get; set; }
-
         public event Action<float> BalanceChanged;
 
         public BalanceService(PlayerBalanceModel playerBalanceModel)

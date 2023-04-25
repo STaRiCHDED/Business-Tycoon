@@ -14,9 +14,9 @@ namespace Services
         public FileService()
         {
             _filePath = Application.persistentDataPath + _fileName;
-             _jsonSerializer = new JsonSerializer();
+            _jsonSerializer = new JsonSerializer();
         }
-        
+
         public void Save(SaveDataModel saveDataModel)
         {
             using var streamWriter = new StreamWriter(_filePath);

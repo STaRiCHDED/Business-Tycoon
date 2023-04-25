@@ -5,9 +5,9 @@ namespace Services
 {
     public class ConfigService : IConfigService
     {
-        public List<BusinessModel> BusinessModels => _businessModels;
+        public List<BusinessModel> BusinessModels { get; private set; }
+
         private readonly BusinessesConfig _businessesConfig;
-        private List<BusinessModel> _businessModels;
 
         public ConfigService(BusinessesConfig businessesConfig)
         {
@@ -24,17 +24,17 @@ namespace Services
             if (businessModels == null)
             {
                 CreateBusinessModels();
-                return _businessModels;
+                return BusinessModels;
             }
 
-            _businessModels = businessModels;
-            return _businessModels;
+            BusinessModels = businessModels;
+            return BusinessModels;
         }
-        
+
         private List<ImprovementModel> CreateImprovementModels(BusinessConfigModel businessConfigModel)
         {
             var improvementModels = new List<ImprovementModel>();
-            
+
             foreach (var improvementConfigModel in businessConfigModel.Improvements)
             {
                 var improvementName = improvementConfigModel.Name;
@@ -44,7 +44,7 @@ namespace Services
 
                 var improvementModel = new ImprovementModel(improvementName, improvementIncomeMultiplier,
                     improvementPrice, improvementIsPurchased);
-                
+
                 improvementModels.Add(improvementModel);
             }
 
@@ -53,7 +53,7 @@ namespace Services
 
         private void CreateBusinessModels()
         {
-            _businessModels = new List<BusinessModel>();
+            BusinessModels = new List<BusinessModel>();
             foreach (var businessConfigModel in _businessesConfig.Businesses)
             {
                 var businessName = businessConfigModel.Name;
@@ -68,7 +68,7 @@ namespace Services
                 var businessModel = new BusinessModel(businessName, businessBasePrice, businessBaseIncome,
                     businessIncomeDelay, businessLevel, businessCurrentIncome, businessCurrentPrice, improvementModels);
 
-                _businessModels.Add(businessModel);
+                BusinessModels.Add(businessModel);
             }
         }
     }

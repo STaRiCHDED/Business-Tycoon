@@ -1,9 +1,6 @@
-﻿using Events;
-using IngameStateMachine;
-using Models;
+﻿using IngameStateMachine;
 using Services;
-using SimpleEventBus.Disposables;
-using UnityEditor;
+using States;
 using UnityEngine;
 using Views;
 
@@ -26,13 +23,13 @@ public class GameStarter : MonoBehaviour
         initializationState.RegisterServices();
 
         var startState = new StartState(_startScreen);
-        var gameState = new GameState(_gameScreen,_businessesSpawner);
+        var gameState = new GameState(_gameScreen, _businessesSpawner);
 
         _stateMachine = new StateMachine(initializationState, startState, gameState);
         _stateMachine.Initialize();
         _stateMachine.Enter<InitializationState>();
     }
-    
+
     private void SaveGame()
     {
         var fileService = ServiceLocator.Instance.GetSingle<IFileService>();
@@ -40,7 +37,7 @@ public class GameStarter : MonoBehaviour
         var saveData = gameDataProvider.GetCurrentData();
         fileService.Save(saveData);
     }
-    
+
     private void OnDestroy()
     {
         ServiceLocator.Instance.Dispose();

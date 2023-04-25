@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Services;
-using UnityEditor;
 
 namespace Models
 {
@@ -18,7 +16,6 @@ namespace Models
         public float CurrentUpgradePrice { get; set; }
         public List<ImprovementModel> Improvements { get; }
         
-
         public BusinessModel(string name, float basePrice, float baseIncome, float incomeDelay,
             float level, float income, float price, List<ImprovementModel> improvements)
         {
@@ -33,6 +30,5 @@ namespace Models
 
             Improvements = improvements;
         }
-
     }
 }

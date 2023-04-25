@@ -7,10 +7,10 @@ namespace Views
     {
         [SerializeField]
         private CanvasGroup _canvasGroup;
-        
+
         [SerializeField]
         private float _duration;
-        
+
         public void FadeIn()
         {
             _canvasGroup.alpha = 0;
@@ -24,6 +24,5 @@ namespace Views
             _canvasGroup.DOFade(0, _duration)
                 .OnComplete(() => gameObject.SetActive(false));
         }
-        
     }
 }

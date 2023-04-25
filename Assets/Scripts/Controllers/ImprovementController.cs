@@ -9,12 +9,12 @@ namespace Controllers
     public class ImprovementController : MonoBehaviour
     {
         public event Action ImprovementPurchased;
-        
+
         [SerializeField]
         private ImprovementView _improvementView;
-        
+
         private ImprovementModel _improvementModel;
-        
+
         public void Initialize(ImprovementModel improvementModel)
         {
             _improvementModel = improvementModel;

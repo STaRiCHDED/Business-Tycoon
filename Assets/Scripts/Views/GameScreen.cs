@@ -6,7 +6,8 @@ namespace Views
 {
     public class GameScreen : BaseScreen
     {
-        [SerializeField] private Button _backButton;
+        [SerializeField]
+        private Button _backButton;
 
         private void Awake()
         {

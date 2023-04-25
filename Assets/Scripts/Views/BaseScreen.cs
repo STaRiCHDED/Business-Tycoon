@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Views
@@ -7,7 +6,7 @@ namespace Views
     {
         [SerializeField]
         private FadeController _fadeController;
-        
+
         public void Show()
         {
             _fadeController.FadeIn();

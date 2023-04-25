@@ -12,6 +12,7 @@ namespace Services
             _configService = configService;
             _balanceService = balanceService;
         }
+
         public SaveDataModel GetCurrentData()
         {
             var businessModels = _configService.BusinessModels;

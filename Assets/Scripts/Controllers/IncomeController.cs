@@ -3,39 +3,48 @@ using Services;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IncomeController : MonoBehaviour
+namespace Controllers
 {
-    [SerializeField] private Slider _slider;
-
-    private BusinessModel _businessModel;
-
-    public void Initialize(BusinessModel businessModel)
+    public class IncomeController : MonoBehaviour
     {
-        _businessModel = businessModel;
-    }
+        [SerializeField]
+        private Slider _slider;
 
-    private void Update()
-    {
-        if (_businessModel.CurrentLevel > 0)
+        private BusinessModel _businessModel;
+
+        public void Initialize(BusinessModel businessModel)
         {
-            UpdateSlider();
+            _businessModel = businessModel;
         }
-    }
 
-    private void UpdateSlider()
-    {
-        _slider.value += Time.deltaTime / _businessModel.IncomeDelay;
-
-        if (_slider.value >= _slider.maxValue)
+        public void ResetProgressBar()
         {
-            _slider.value = _slider.minValue;
-            UpdateIncome();
+            _slider.value = 0;
         }
-    }
 
-    private void UpdateIncome()
-    {
-        var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
-        balanceService.Receive(_businessModel.CurrentIncome);
+        private void Update()
+        {
+            if (_businessModel.CurrentLevel > 0)
+            {
+                UpdateSlider();
+            }
+        }
+
+        private void UpdateSlider()
+        {
+            _slider.value += Time.deltaTime / _businessModel.IncomeDelay;
+
+            if (_slider.value >= _slider.maxValue)
+            {
+                _slider.value = _slider.minValue;
+                UpdateIncome();
+            }
+        }
+
+        private void UpdateIncome()
+        {
+            var balanceService = ServiceLocator.Instance.GetSingle<IBalanceService>();
+            balanceService.Receive(_businessModel.CurrentIncome);
+        }
     }
 }
